@@ -14,4 +14,6 @@ public class MykoipondApplication {
 
     //DOCS
     // https://docs.spring.io/spring-data/rest/docs/current/reference/html/#reference
+
+    // https://docs.spring.io/spring-data/rest/docs/current/reference/html/#security
 }

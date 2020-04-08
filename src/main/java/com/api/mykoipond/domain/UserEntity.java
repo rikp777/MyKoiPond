@@ -45,6 +45,8 @@ public class UserEntity extends BaseEntity{
     @Size(min = 4)
     private String password;
 
+    private boolean active = true;
+
     @CreationTimestamp
     private Timestamp created_at;
 
@@ -52,15 +54,17 @@ public class UserEntity extends BaseEntity{
         //Has many Ponds
         @ManyToMany(
             mappedBy = "users",
-            fetch = FetchType.EAGER,
+//            fetch = FetchType.EAGER,
             cascade = CascadeType.ALL
         )
         private List<PondEntity> ponds;
 
-        @ManyToMany(cascade=CascadeType.MERGE)
-        @JoinTable(
-                name="user_role",
-                joinColumns={@JoinColumn(name="USER_ID", referencedColumnName="ID")},
-                inverseJoinColumns={@JoinColumn(name="ROLE_ID", referencedColumnName="ID")})
+        @ManyToMany(
+                mappedBy = "users",
+                fetch = FetchType.EAGER
+        )
         private List<RoleEntity> roles = new ArrayList<>();
+
+        @ManyToMany()
+        private List<PermissionEntity> permissions = new ArrayList<>();
 }

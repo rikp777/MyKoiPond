@@ -1,0 +1,76 @@
+#============SERVER============
+# HTTP server port
+server:
+  port: 7070
+
+# Context path of the application
+  servlet:
+    context-path: /api
+
+# Default HTTP session time out
+    session:
+      timeout: 15m
+
+spring:
+#============JDBC============
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+
+#============JPA============
+  jpa:
+    hibernate:
+#      ddl-auto: create-drop
+      dialect: org.hibernate.dialect.MySQL57Dialect
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+#============SECURITY============
+  security:
+    user:
+      name: rik
+      password: rik
+
+
+#============ACTUATOR============
+management:
+  endpoints:
+    web:
+      exposure:
+        # Use wildcard "*" to expose all endpoints
+        # Can also expose individual endpoints with a comma-delimited list
+        includes: "*"
+        #Exclude individual endpoints with a comma-delimited list
+        exclude: health, info
+      base-path: /actuator
+#============INFO============
+info:
+  app:
+    name: MyKoiPond
+    description: Semester 4 School project MyKoiPond Fontys
+    version: 1.0.0
+
+
+#============SECURITY============
+#security:
+#  oauth2:
+#    client:
+#      clientId: 9407bb0a871874f04d71
+#      clientSecret: b3c7a4363e8994821e48dc09d72bd2110ccebd39
+#      accessTokenUri: https://github.com/login/oauth/access_token
+#      userAuthorizationUri: https://github.com/login/oauth/authorize
+#      clientAuthenticationScheme: form
+#    resource:
+#      user-info-uri: https://api.github.com/user
+#      prefer-token-info: false
+
+
+##============Seeder============
+#spring.flyway.locations=classpath:/db/migration
+security:
+
