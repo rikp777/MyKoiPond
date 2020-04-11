@@ -3,12 +3,10 @@ package com.api.mykoipond.domain;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,13 +25,17 @@ public class BreedEntity extends BaseEntity{
     private String name;
 
     @NotNull(message = "description is mandatory")
-    @Size(min = 5, max = 500)
+    @Size(min = 3, max = 500)
     private String description;
 
 
     //RELATIONS
         // A Breed has many SubBreeds (OneToMany)
-        @OneToMany(mappedBy = "breed")
-        private List<SubBreedEntity> subBreeds;
+        @OneToMany(
+                mappedBy = "breed",
+                fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL
+        )
+        private List<SubBreedEntity> subBreeds = new ArrayList<>();
 
 }

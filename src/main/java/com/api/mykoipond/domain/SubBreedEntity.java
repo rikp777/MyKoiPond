@@ -26,7 +26,7 @@ public class SubBreedEntity extends BaseEntity{
     private String name;
 
     @NotNull(message = "description is mandatory")
-    @Size(min = 5, max = 250)
+    @Size(min = 3, max = 250)
     private String description;
 
     @CreationTimestamp
@@ -36,8 +36,11 @@ public class SubBreedEntity extends BaseEntity{
 
     //RELATIONS
         //Many subbreeds have one breed
-        @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-        @JoinColumn(nullable = false)
+        @ManyToOne(
+                fetch = FetchType.EAGER,
+                optional = false
+        )
+        @JoinColumn(name = "breed_id", nullable = false)
         private BreedEntity breed;
 
         //One subbreed has many kois

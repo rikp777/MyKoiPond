@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @RepositoryRestResource(
-        path="subbreeds",
-        collectionResourceRel = "subbreeds"
+        path="subbreeds"
+//        collectionResourceRel = "subbreeds"
 )
 public interface SubBreedRepository extends CrudRepository<SubBreedEntity, Long>{
     Optional<SubBreedEntity> findByName(String name);
