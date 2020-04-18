@@ -1,6 +1,9 @@
 language: java
 jdk: oraclejdk11
 
+script:
+  - ./mvnw clean install -B
+
 services:
   - mysql
 
