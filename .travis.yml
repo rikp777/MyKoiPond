@@ -1,8 +1,12 @@
 language: java
 jdk: oraclejdk11
 
+services:
+  - mysql
+
 before_install:
   - chmod +x mvnw
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
 
 #script:
 #  - ./mvnw clean install -B
