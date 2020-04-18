@@ -127,8 +127,8 @@
                     <excludes>
                         <exclude>**/*Application.*</exclude>
                         <exclude>**/config/**</exclude>
-                        <exclude>**/model/*</exclude>
-                        <exclude>**/entity/*</exclude>
+                        <exclude>**/domain/*</exclude>
+                        <exclude>**/seeder/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
