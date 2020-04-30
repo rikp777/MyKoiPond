@@ -6,7 +6,10 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 
-@RepositoryRestResource(path="users")
+@RepositoryRestResource(
+        path="users",
+        collectionResourceRel = "users"
+)
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity findByUsername(String username);
     UserEntity findByEmail(String email);

@@ -12,6 +12,11 @@ server:
       timeout: 15m
 
 spring:
+#  data:
+#    rest:
+#      default-media-type: application/json
+#  hateoas:
+#    use-hal-as-default-json-media-type: false
 #============JDBC============
   datasource:
     url: jdbc:mysql://localhost:3306/test?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC

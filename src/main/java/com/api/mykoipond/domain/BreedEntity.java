@@ -21,7 +21,7 @@ public class BreedEntity extends BaseEntity{
 
     @Column(unique = true)
     @NotNull(message = "name is mandatory")
-    @Size(min = 3, max = 25, message = "Name must be between 3 and 25 characters")
+    @Size(min = 2, max = 50, message = "Name must be between 3 and 25 characters")
     private String name;
 
     @NotNull(message = "description is mandatory")

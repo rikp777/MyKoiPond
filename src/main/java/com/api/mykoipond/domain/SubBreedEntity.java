@@ -22,11 +22,11 @@ import java.util.List;
 public class SubBreedEntity extends BaseEntity{
 
     @NotNull(message = "name is mandatory")
-    @Size(min = 3, max = 25, message = "Name must be between 3 and 25 characters")
+    @Size(min = 2, max = 50, message = "Name must be between 3 and 25 characters")
     private String name;
 
     @NotNull(message = "description is mandatory")
-    @Size(min = 3, max = 250)
+    @Size(min = 3, max = 750)
     private String description;
 
     @CreationTimestamp

@@ -8,7 +8,8 @@ import java.util.Optional;
 
 
 @RepositoryRestResource(
-        path="breeds"
+        path="breeds",
+        collectionResourceRel ="breeds"
 )
 public interface BreedRepository extends CrudRepository<BreedEntity, Long>{
     Optional<BreedEntity> findByName(String name);
