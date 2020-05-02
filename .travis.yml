@@ -1,31 +1,25 @@
 sudo: required
 language: java
 jdk: oraclejdk11
-
 services:
   - mysql
   - docker
-
-env:
-  global:
-    - secure: "KxNw1mxKbQXPn6X2CMehMOKJmfbr67jw8KVqM6Dwrjwqu9okasJSdCsdlhjl1tgh5dLIHp5Qq847KR8UKDFW5WroUp3rC9rEb11ADCIkkS44EbibeWvPrbfZrMuAEdUX+2n68aWil9idHi+h0pANAN90WAqIsyqrbqnzac7vcJNbLp9U2CsrJ52oQLeo7sCCKzmcbzdIfeJ91JaGuKoqhylkf+Rel9PtBwKf8uXy1k8l7pMmcdS8wvDy8zqUs5eaJiTrjpzunAt7kKkQJjimhzxcM8v4AZlABfuYbNKNFB5+t0W+wDyhqfqtM8uUGhZkccYNHJftkbuKw9aeUqsjYHO+l1ZY7XYXtvsHBWIxRIg1c3DciVi5kO6Uc2vqh1lklqNMN86YzQoLaB/A8zjM3FcxW0QXmnZtXLTOX2BAT5HzUenjXE0+pAUeFU56p9AMaR4rq859alkQ3OhbsBL6+uABbqopqVd/uxhAKYCfGOWJY3toqK7k1IbsKsZTxsRv4oGA1qLaDOhiP+LzjJ9WH2kJPhwBrgGlOTiUyIERdq3YycDMo9Neiflo6HfgNziFDLV367Q/YA73KSHvo32iRfdfY1Poqqgr4StsJshpbYAgJBrdaH8DTL09tWc6/Xo/bhQ7ZnxQIdY2NdPrODkZxBeEjOcffc7HlVax14cJSTI="
-    - COMMIT=${TRAVIS_COMMIT::7}
-
 
 addons:
   sonarcloud:
     organization: "rikp777"
     token:
-      secure: $SONAR_TOKEN
+      secure: "E+Ahzeu0pcKPSuRKLoQM8+c8LqA13vy8rLADuVXFCvCGcwrHEx4lOydSvwkLvn3Szj5GUrV/wU/kXYbEsTNwqDgSaD8MU36wdkR/sIdHx75dRZfytTx6JkdUXir6gX1tZvgYAUhuiqh5yHDw2X7AuiO/F4NEDcRL5xiGWFKiZU2K61aIc+37wPWQGOUxMZBy8iantjyV1qeveuh13/HY26aWMoekQLOCF5hIN1fgd/EG2jUsT+t9CPCkCouuVceXpWjVxUi8LloN4H37Wj1olZiQIEM86/6AmKQkYeDvlxlm5NnCEPM4jaN1v8QdJnHMfgtY1Yu2He3aaGj650HysJ+AqZhkttglyEj6ZKXFsJ/6xHOlQcdC7EwWwya68wVF5LlWvalyEVppgQchrVaAhpnLO+dlBJJWf2TqWJXCbwQI/Dvu3dK/92soVjSd3eecfZOI9Bxta73+AErwV1+MwwvqBtYloaFNMZpouF8rmwbgRlHnmntUJxhdA14acwzAqJxNmDLwTKFyLt6ZG5w0EllOkwIZ0NAh99beYYQiEUH1uPsLNtWiCRMhoQ4Cwh2bHAGBqTfMUgtmJqIOPRUSnFaNs4IiobPseGd6cqXknVYTOm4+EtehJgVbMIihUWeiRmqngTd0S+DcUenBOROXp6Um2fG3CMuxksy+3hBptoo=" #encrypted value of your token
 
 script:
-  - ./mvnw clean install -B
-  - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
+
+
 cache:
   directories:
     - "$HOME/.m2/repository"
     - "$HOME/.sonar/cache"
-
 before_install:
   - chmod +x mvnw
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
