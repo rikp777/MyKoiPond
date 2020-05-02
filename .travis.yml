@@ -1,6 +1,7 @@
 sudo: required
 language: java
 jdk: oraclejdk11
+
 services:
   - mysql
   - docker
@@ -9,17 +10,25 @@ addons:
   sonarcloud:
     organization: "rikp777"
     token:
-      secure: "E+Ahzeu0pcKPSuRKLoQM8+c8LqA13vy8rLADuVXFCvCGcwrHEx4lOydSvwkLvn3Szj5GUrV/wU/kXYbEsTNwqDgSaD8MU36wdkR/sIdHx75dRZfytTx6JkdUXir6gX1tZvgYAUhuiqh5yHDw2X7AuiO/F4NEDcRL5xiGWFKiZU2K61aIc+37wPWQGOUxMZBy8iantjyV1qeveuh13/HY26aWMoekQLOCF5hIN1fgd/EG2jUsT+t9CPCkCouuVceXpWjVxUi8LloN4H37Wj1olZiQIEM86/6AmKQkYeDvlxlm5NnCEPM4jaN1v8QdJnHMfgtY1Yu2He3aaGj650HysJ+AqZhkttglyEj6ZKXFsJ/6xHOlQcdC7EwWwya68wVF5LlWvalyEVppgQchrVaAhpnLO+dlBJJWf2TqWJXCbwQI/Dvu3dK/92soVjSd3eecfZOI9Bxta73+AErwV1+MwwvqBtYloaFNMZpouF8rmwbgRlHnmntUJxhdA14acwzAqJxNmDLwTKFyLt6ZG5w0EllOkwIZ0NAh99beYYQiEUH1uPsLNtWiCRMhoQ4Cwh2bHAGBqTfMUgtmJqIOPRUSnFaNs4IiobPseGd6cqXknVYTOm4+EtehJgVbMIihUWeiRmqngTd0S+DcUenBOROXp6Um2fG3CMuxksy+3hBptoo=" #encrypted value of your token
-
+      secure: $SONAR_TOKEN # encrypted value of your token
 script:
-  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-
+  - echo -e '<?xml version="1.0" encoding="UTF-8"?>\n<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"\n    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n  <mirrors>\n    <mirror>\n      <id>mvnsearch-unavailable</id>\n      <name>mvnsearch-unavailable</name>\n      <mirrorOf>mvnsearch</mirrorOf>\n      <url>http://repo1.maven.org/maven2</url>\n    </mirror>\n  </mirrors>\n  <profiles>\n    <profile>\n      <id>no-mvnsearch</id>\n      <repositories>\n        <repository>\n          <id>mvnsearch</id>\n          <url>http://www.mvnsearch.org/maven2</url>\n          <releases>\n            <enabled>true</enabled>\n          </releases>\n          <snapshots>\n            <enabled>true</enabled>\n          </snapshots>\n        </repository>\n      </repositories>\n    </profile>\n  </profiles>\n  <activeProfiles>\n    <activeProfile>no-mvnsearch</activeProfile>\n  </activeProfiles>\n</settings>' > $HOME/.m2/settings.xml
+  - cat $HOME/.m2/settings.xml
+#  - mvn heroku:deploy
 
 cache:
   directories:
     - "$HOME/.m2/repository"
     - "$HOME/.sonar/cache"
+
 before_install:
   - chmod +x mvnw
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - mvn clean
+#  - echo "$DOCKER_PASSWORD" | docker login  -u "$DOCKER_USERNAME" --password-stdin
+#  - docker pull openjdk:8-jdk-alpine
+
+after_success:
+#  - travis_wait mvn site
+  - bash <(curl -s https://codecov.io/bash)
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
