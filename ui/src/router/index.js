@@ -1,23 +1,24 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import breed from './routes/breed'
+import Vue from "vue";
+import VueRouter from 'vue-router';
+
+import breed from './routes/breed.route'
 
 Vue.use(VueRouter)
 
 const routes = [
-    {
-        path: '/',
-        name: 'Home',
-        component: Home
-    },
-    ...breed
+  {
+    path: '/',
+    name: 'Home',
+    component: () => import(/* webpackChunkName: "app" */ '../views/app'),
+  },
+  ...breed
 ]
 
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
-    routes
+  linkActiveClass: "active",
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
 
 export default router
