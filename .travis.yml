@@ -7,15 +7,21 @@ services:
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::7}
-    - secure: "LYJgRSp0Au9DWqEDVz+bfpLekDGJuLWm8exOExwYgoYM9t9ccwgFECPEHbEvy94fRA96E7k97e2/+YCD/TpQG3d5QZOFjyUJIRb8kX/TesE3rRWcaVS/tNLKvRBpnvGJCG5LmuHOjaxmrGP4jh8bpyDag/NokmXooxSR23jZ6HDdL2t71onMA70uyi77xouTepZG/cqzGeF3CFOw1oAYSv1qaFyufZ80+Y1V8iYXpxN7Cbw8XDuuazCGD6ACYDcrxt7Vpqw9vXPs77pq8FCQ71YW5M4sjWL60uxhbBK1vbdecQkfHq7AnyP1yJ7o19rbeZSkkiqJjKEEz7A/CMFZuSmGg6xLeGU/ugdxvGhvX9SD5LWLU2eUOoeAOOVW3PMaaG/PnwJAtRh5qd9LXGQ0bXD+QuhHtNdWhiCp6hSMgDQSrTNdADucBFJdu16jQk6iSQQEiQ5fuGVkikkNeHWNoCNMXRfN9l2/HwWANAltdAotZlf0pymoZB0NQA/QToNsl0mQkJqgHATI7/6icWvcfe4Sdpp7NVJkF/c9JhLrp5qokSrMOhpMDacmuZpXLg+x+bC0yhQJsbKNZUFoxl+ThB5ycQy/WzDHzRgeUGrQqoWUkBO7+5QOa1Xma5a0QlY6j1DpDQwupuJ9t1EYnyNpwBOqHJ64DWI6YTEriWCXmtw="
+    - secure: "SQ1mupd3XfpXf34LdWLOBA0JhkS5KPe816dGWcnyy+L/7y98+dFsVvcut8mtvktdPMCW+M2xW+sJEfEu7CfpvNjUf55XYZoj2OOqo
+              P1VXU+YG/OgUNuX9vTJKqnz47HuS2CgWoz/f+VUKPH0dIobQ+RKgUxzolk6xD7lVUI821+uF65pmeRgc9tZEY9xYK1wShJilyzguYmerxYHx65P7
+              wNN4i60s9bPYc0IpIVV+RjZaCKIwyO1ojMU48Rq/qkY1TCxU65a4m3cyj5jqinxNghC04MBptU4s5kOs1U3EbHHUdOTo47c0TbLpd7kM/FjsqDEs
+              WNNlmNnCuDRUa9s9IH0pgtJxbFdAvRLLJsu1SlYB0rowSAYXtUjc3B/6M4CcvOEqidPTt6M92O+5yVpOeUjU5ajeIey+vtSdpVlKcgpV3dqXbZVc
+              +wZOj8+cpLuDyMsV6li2cN5P8hJj3T1ldCC87u/CwZOKnKh1/zvClhG4I4w8Of+mcQDHVrMmHwSmPzgKgVDkGkEolNBD3laSn+NBMv/u0BwMckXW
+              YWY6ffSTy0980ZWoi0Ko6dWx+ZcYcRhFW4+BfHRtd/4dC2ciHiDjDLuysMe1g2LdekK+918oENqo9DIUdi/SiLI4Rl2LZdG35VD+TaHepyXtKQQP
+              WgNkcjlW9hHTqJ6z4FnenI="
 addons:
   sonarcloud:
     organization: rikp777
     token:
-      secure: "LYJgRSp0Au9DWqEDVz+bfpLekDGJuLWm8exOExwYgoYM9t9ccwgFECPEHbEvy94fRA96E7k97e2/+YCD/TpQG3d5QZOFjyUJIRb8kX/TesE3rRWcaVS/tNLKvRBpnvGJCG5LmuHOjaxmrGP4jh8bpyDag/NokmXooxSR23jZ6HDdL2t71onMA70uyi77xouTepZG/cqzGeF3CFOw1oAYSv1qaFyufZ80+Y1V8iYXpxN7Cbw8XDuuazCGD6ACYDcrxt7Vpqw9vXPs77pq8FCQ71YW5M4sjWL60uxhbBK1vbdecQkfHq7AnyP1yJ7o19rbeZSkkiqJjKEEz7A/CMFZuSmGg6xLeGU/ugdxvGhvX9SD5LWLU2eUOoeAOOVW3PMaaG/PnwJAtRh5qd9LXGQ0bXD+QuhHtNdWhiCp6hSMgDQSrTNdADucBFJdu16jQk6iSQQEiQ5fuGVkikkNeHWNoCNMXRfN9l2/HwWANAltdAotZlf0pymoZB0NQA/QToNsl0mQkJqgHATI7/6icWvcfe4Sdpp7NVJkF/c9JhLrp5qokSrMOhpMDacmuZpXLg+x+bC0yhQJsbKNZUFoxl+ThB5ycQy/WzDHzRgeUGrQqoWUkBO7+5QOa1Xma5a0QlY6j1DpDQwupuJ9t1EYnyNpwBOqHJ64DWI6YTEriWCXmtw="
+      secure: $SONAR_TOKEN
 script:
   - "./mvnw clean install -B"
-  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=rikp777_MyKoiPond
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 cache:
   directories:
     - "$HOME/.m2/repository"
