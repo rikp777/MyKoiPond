@@ -10,9 +10,10 @@ addons:
   sonarcloud:
     organization: "rikp777"
     token:
-      secure: $SONAR_TOKEN # encrypted value of your token
+      secure: "cZQJVReny2VVGKlfriKTz9kh1mnUDaiWcGIQeDp8aBrsxVmuZSt/N5Jw38i3P8F72rmjCpmycOxTCJmlXMpu0F+jdSmoQkOvupcbW6wdSfICmgqq8+3sgED3teUAVrBsiK4fjtvRcV+qEPRmMnDS4nz9YicJaLwa1z0ppwIx1kWQUd5ENUQk4HdvGtxvza0S5dO/iY6dKktR2TXqFKGEXrV2AiqrHLeR9QmeZgv1IdDmord/2RrNuoR9QX1hF/Fj1UGKZEHdVr5knG7LYI6sMCga0+UHz5CWn0Ukzf+7kdXMOKMd/VmSrUyXxhR2PmWhWBanaXCo5Q2ByDijaJEZ3cQawFdJymP0u6gLCyo8piKtmzN4jq0neoT8gjvk65zIjuefExU8N2hCtZvVMd1jggErivuodTsdgGOUKItnQ0RZW84ECMB1n5m90Gj8U9mcxy7p59Lz6IKcxf5x7Vbq/jsdhplKcIf1tQ2P5G9WLsaa6DUTC6xd6alBp14jG8H31WyWTOujRPiOMbeB1z7TsmcOFfLVCLRNJ881S40XgZJUXXfroHBD6srM1dFvzJ9MLoNCZRZz2QFFmavOqZ0RLxbuZqJCpfTkLa4K1aip+iesghhHWdJ9X51SNtlUC5B8pRs5+l/tbo8n+f60VuK2upw1KkXqcHwrjKfXE502IZ4="
 
 script:
+  - mvn clean install -B
   - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 
 cache:
@@ -23,7 +24,6 @@ cache:
 before_install:
   - chmod +x mvnw
   - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
-  - mvn clean
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
