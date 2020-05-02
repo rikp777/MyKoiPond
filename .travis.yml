@@ -6,14 +6,8 @@ services:
   - docker
 env:
   global:
+    - secure: "dXtPfv+lObX59Pp1xSE6RxiPXlU2qohjnEBgF/A2eG5CeWf1AYukdnN6HrBg+OFCnwQ9rYNQK0W8DYDYGuj6PQARxLagGzFAvg+9SlMOEmrsIf7DoAnElgXknB1k4vLI9mvEpWzOD/PulbBcIBmizoJSrmbHrgEVDI2l770ybHi5q6XMlpDe9tuM9WJx0mKUj/QzGGTzLqYI9d2UHZ8/k4HIYqGqd4a5FqBH+xBpLoKyso/bTuKHxCPS7r7rYGS+FjHueR1Mnbp++IGHaASLl4f1VVxglK4fhU8gHju2FRA0QHFVEW6rrizvdKnWyHgeeNJQKCtDRU838qAUjuENiNSpM9Wx+cNooVbd2X+wXAg8e1W96CybqUzcN+1WzFR5JOL6ZK8iZGHRGJGSga3RZ19P3qyzP+38dxGWbtGOHet+RxEJO5d9E8IJJk0nPB2HN67NRm7zxM9X0fKWldvsDqL+8AugUb4wnsdaE8YdqCj1zXpi+dmnxgrshTWVsCCzmGdGIy2nw8v02XfpKdZI1wYzPUW3fvL7m06HYch+CKYNIkElEpQW6rtnjT3BqlCmRkBmUmTkqY8WiQOuJ01hpK0bXL7fBGOwAd45crqj7LtSPNbULPcfaUCw7mRHhhdGnihRri+LtpUBpzMEJaHmdO4x3n5b2OQsxpK5s/Z/guU="
     - COMMIT=${TRAVIS_COMMIT::7}
-    - secure: "SQ1mupd3XfpXf34LdWLOBA0JhkS5KPe816dGWcnyy+L/7y98+dFsVvcut8mtvktdPMCW+M2xW+sJEfEu7CfpvNjUf55XYZoj2OOqo
-              P1VXU+YG/OgUNuX9vTJKqnz47HuS2CgWoz/f+VUKPH0dIobQ+RKgUxzolk6xD7lVUI821+uF65pmeRgc9tZEY9xYK1wShJilyzguYmerxYHx65P7
-              wNN4i60s9bPYc0IpIVV+RjZaCKIwyO1ojMU48Rq/qkY1TCxU65a4m3cyj5jqinxNghC04MBptU4s5kOs1U3EbHHUdOTo47c0TbLpd7kM/FjsqDEs
-              WNNlmNnCuDRUa9s9IH0pgtJxbFdAvRLLJsu1SlYB0rowSAYXtUjc3B/6M4CcvOEqidPTt6M92O+5yVpOeUjU5ajeIey+vtSdpVlKcgpV3dqXbZVc
-              +wZOj8+cpLuDyMsV6li2cN5P8hJj3T1ldCC87u/CwZOKnKh1/zvClhG4I4w8Of+mcQDHVrMmHwSmPzgKgVDkGkEolNBD3laSn+NBMv/u0BwMckXW
-              YWY6ffSTy0980ZWoi0Ko6dWx+ZcYcRhFW4+BfHRtd/4dC2ciHiDjDLuysMe1g2LdekK+918oENqo9DIUdi/SiLI4Rl2LZdG35VD+TaHepyXtKQQP
-              WgNkcjlW9hHTqJ6z4FnenI="
 addons:
   sonarcloud:
     organization: rikp777
