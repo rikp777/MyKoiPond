@@ -2,24 +2,24 @@ sudo: required
 language: java
 jdk: oraclejdk11
 services:
-- mysql
-- docker
+  - mysql
+  - docker
 env:
   global:
-  - COMMIT=${TRAVIS_COMMIT::7}
-  - secure: drH0OISYp9qkGZ9deVSEomcSPKXXSX7KF/jVBhhPv4JEjz/EcJIpc4pxZZDA+41YD1coPph8R83eh+mXe9AYgeoMiglwgT3y2VwfaQXWS1vlp/l3pGgF/4gdKbPIwWbN2kV2fxBCZk/SqAdjCTv5DIRFP7apID8EOh3DL08R1OTS5+YKvQWkekHJ7NkSrOPCAQHhu0H/fK4eCjdsLLYC8uqfbW76lXINPuoUmeyv+SiIfBnTGoRSLELIYGpCVRsxvrOhMev0u1h8wBf/hGmywg2JIPUPlqiJtMDlEPQTtxSg7WSbiJLcwkDGX2IjBQNSRXcMuk69ooVIlRTu6tAM8ENVaerkwGLPN3yL2rnQNvOfOI54+7Ka2ZoCo6Ye4c9467tNuufPmMqf3WqgFgl4/wSIwv76RUB+ZLN95dr+XpPMsWpwyNN4BbFIaFvE5pPLXwEq5jIiMHvQuUZHKfAR7WdM2Bl++PvMkWQlEYUt4qlsfm+nagqe5+gWfMBpjgKTs42cxDfDP/Zjn8e5QU1/IikSywWEpSv6iRemAuMLS5CQps5q2mrWpFXTjagzFfjc6+Ht/jIjH9I+GyTf8d11+iQmO5/8UMX/CPBpu25I1wt82jd10jX09C+mgYHqSCj5E4yIL7qnI8bvgorgpu6xRGTCOhUka7SAOicVG6oG9rY=
+    - secure: SIAMHwL2QH4uUsp9X8nnpFQkmLk7oXdUDfTOfFnQscPoaDp4ZSDvLsVSeCUCdNpO6svjXJ/Vu3R1cEAPatiVh04x+4JHQLFlFNYG/MJ0bHZoklnn52JXBQfCvgMb9tTiA9p6aAZ9usdilNTzyCDHjC0iu3r1P7YmhJsgW5v5cEJQwabv3os3RmEpQOCfaBsg6HPlEANUYeYwpea2qoEW4nT4kbA0BQtg2lR9HaiJuDzp7PS47Hy1D/XnSgaQMjhrCmp/Ieo0K21s7leHFYkqjqK0OpfbBt99xC5KB3CX4Ot3Tg89UDKn534SsaHJp46Bqve1fP70ql5ySUoXzz4V7EUrTEyk+ufbQUgarwrcko553qTImyNLnFCZRuS3tu2fjcjgW6fba56xFIC+6/yxm6ivbLiRgSb/OiV3zroyTVPBdlxzfbcDVKvhEixBxgNkv2FJELNQAZ+Tz3WvzEXLcpzIU5RIr7nc4WqBG48R01kNlMHK8nmN/Sgs75g0BzqjQetYmlfZosl/3N+fdXnbNppYm8hq8/vnmS7MMK6nCIk53iNuibFSqTzg4ITgXSigB508RIYPbdvXQI62BsqYcaqzAlAY8aR4163rBeobr8AAJfO5of/lc3g9M3F6HOV/3cfj4HfaCbfGeQiDdyCrlKnHoGWQb5Kip7xgD96aQsE=
+    - COMMIT=${TRAVIS_COMMIT::7}
 addons:
   sonarcloud:
     organization: rikp777
     token:
-      secure: drH0OISYp9qkGZ9deVSEomcSPKXXSX7KF/jVBhhPv4JEjz/EcJIpc4pxZZDA+41YD1coPph8R83eh+mXe9AYgeoMiglwgT3y2VwfaQXWS1vlp/l3pGgF/4gdKbPIwWbN2kV2fxBCZk/SqAdjCTv5DIRFP7apID8EOh3DL08R1OTS5+YKvQWkekHJ7NkSrOPCAQHhu0H/fK4eCjdsLLYC8uqfbW76lXINPuoUmeyv+SiIfBnTGoRSLELIYGpCVRsxvrOhMev0u1h8wBf/hGmywg2JIPUPlqiJtMDlEPQTtxSg7WSbiJLcwkDGX2IjBQNSRXcMuk69ooVIlRTu6tAM8ENVaerkwGLPN3yL2rnQNvOfOI54+7Ka2ZoCo6Ye4c9467tNuufPmMqf3WqgFgl4/wSIwv76RUB+ZLN95dr+XpPMsWpwyNN4BbFIaFvE5pPLXwEq5jIiMHvQuUZHKfAR7WdM2Bl++PvMkWQlEYUt4qlsfm+nagqe5+gWfMBpjgKTs42cxDfDP/Zjn8e5QU1/IikSywWEpSv6iRemAuMLS5CQps5q2mrWpFXTjagzFfjc6+Ht/jIjH9I+GyTf8d11+iQmO5/8UMX/CPBpu25I1wt82jd10jX09C+mgYHqSCj5E4yIL7qnI8bvgorgpu6xRGTCOhUka7SAOicVG6oG9rY=
+      secure: SIAMHwL2QH4uUsp9X8nnpFQkmLk7oXdUDfTOfFnQscPoaDp4ZSDvLsVSeCUCdNpO6svjXJ/Vu3R1cEAPatiVh04x+4JHQLFlFNYG/MJ0bHZoklnn52JXBQfCvgMb9tTiA9p6aAZ9usdilNTzyCDHjC0iu3r1P7YmhJsgW5v5cEJQwabv3os3RmEpQOCfaBsg6HPlEANUYeYwpea2qoEW4nT4kbA0BQtg2lR9HaiJuDzp7PS47Hy1D/XnSgaQMjhrCmp/Ieo0K21s7leHFYkqjqK0OpfbBt99xC5KB3CX4Ot3Tg89UDKn534SsaHJp46Bqve1fP70ql5ySUoXzz4V7EUrTEyk+ufbQUgarwrcko553qTImyNLnFCZRuS3tu2fjcjgW6fba56xFIC+6/yxm6ivbLiRgSb/OiV3zroyTVPBdlxzfbcDVKvhEixBxgNkv2FJELNQAZ+Tz3WvzEXLcpzIU5RIr7nc4WqBG48R01kNlMHK8nmN/Sgs75g0BzqjQetYmlfZosl/3N+fdXnbNppYm8hq8/vnmS7MMK6nCIk53iNuibFSqTzg4ITgXSigB508RIYPbdvXQI62BsqYcaqzAlAY8aR4163rBeobr8AAJfO5of/lc3g9M3F6HOV/3cfj4HfaCbfGeQiDdyCrlKnHoGWQb5Kip7xgD96aQsE=
 script:
-- "./mvnw clean install -B"
-- mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=rikp777_MyKoiPond
+  - "./mvnw clean install -B"
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=rikp777_MyKoiPond
 cache:
   directories:
-  - "$HOME/.m2/repository"
-  - "$HOME/.sonar/cache"
+    - "$HOME/.m2/repository"
+    - "$HOME/.sonar/cache"
 before_install:
-- chmod +x mvnw
-- mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
+  - chmod +x mvnw
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS test;'
