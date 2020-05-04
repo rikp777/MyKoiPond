@@ -1,6 +1,6 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "http:127.0.0.1:7070/breeds"
+const apiUrl = "/breeds"
 
 // Initial State
 const state = {

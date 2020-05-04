@@ -9,6 +9,7 @@
                 class="card-body align-self-center d-flex flex-column flex-lg-row justify-content-between min-width-zero align-items-lg-center">
                 <p class="list-item-heading mb-0">{{item.name}}</p>
                 <p class="mb-0 text-muted text-small w-50">{{item.description}}</p>
+                <button>update</button>
               </div>
             </div>
           </b-colxx>
@@ -82,19 +83,19 @@
         axios
           .get(url, {params})
           .then(({data}) => {
-            // console.log(data)
-            this.items = data._embedded.breeds
+            console.log(data)
+            this.items = data.embedded.breeds
 
             this.page.size = data.page.size
             this.page.elements = data.page.totalElements
             this.page.total = data.page.totalPages
             this.page.number = data.page.number
 
-            this.page.first = data._links.first.href
-            this.page.prev = data._links.prev.href
-            this.page.self = data._links.self.href
-            this.page.next = data._links.next.href
-            this.page.last = data._links.last.href
+            this.page.first = data.links.first.href
+            this.page.prev = data.links.prev.href
+            this.page.self = data.links.self.href
+            this.page.next = data.links.next.href
+            this.page.last = data.links.last.href
           })
           .catch(error => console.log("error jonguh"))
           .finally(() => {

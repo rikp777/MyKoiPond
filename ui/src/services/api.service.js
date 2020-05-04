@@ -11,6 +11,7 @@ const ApiService  = {
   initialize() {
     console.log(`[MyKoiPond] initialize axios instance`)
     Vue.use(VueAxios, axios);
+    Vue.axios.defaults.baseURL = 'http://127.0.0.1:7070/api'
     Vue.axios.defaults.timeout = 1000;
     Vue.axios.defaults.headers.common = {
       // 'Access-Control-Allow-Origin': '*',
@@ -58,7 +59,6 @@ const ApiService  = {
   },
 
   post(resource, params) {
-
     console.log(`[MyKoiPond] post ${resource} with params ${JSON.stringify(params)}`)
 
     const request = Vue.axios
