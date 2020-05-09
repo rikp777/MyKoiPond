@@ -12,7 +12,7 @@
             <b-form-input
                 id="name"
                 v-model="form.name"
-                type="name"
+                type="text"
                 required
                 placeholder="Enter name"
             ></b-form-input>
@@ -25,7 +25,7 @@
             <b-form-input
                 id="description"
                 v-model="form.description"
-                type="description"
+                type="text"
                 required
                 placeholder="Enter description"
             ></b-form-input>

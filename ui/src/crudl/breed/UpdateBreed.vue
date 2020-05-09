@@ -1,7 +1,8 @@
 <template>
     <b-form
         @submit="onSubmit"
-        @reset="onReset">
+        @reset="onReset"
+    >
 
 
         <b-form-group
@@ -11,7 +12,7 @@
             <b-form-input
                 id="name"
                 v-model="form.name"
-                type="name"
+                type="text"
                 required
                 placeholder="Enter name"
             ></b-form-input>
@@ -24,7 +25,7 @@
             <b-form-input
                 id="description"
                 v-model="form.description"
-                type="description"
+                type="text"
                 required
                 placeholder="Enter description"
             ></b-form-input>
@@ -39,7 +40,7 @@
 <script>
     export default {
         name: "UpdateBreed",
-        props: ['id'],
+        props: ['item'],
         data() {
             return {
                 form: {
@@ -67,6 +68,12 @@
             }
         },
         mounted() {
+            this.form = this.item
+        },
+        watch: {
+            item: function(newVal, oldVal) { // watch it
+                this.form = newVal
+            }
         }
     }
 </script>

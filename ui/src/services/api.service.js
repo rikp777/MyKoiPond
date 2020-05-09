@@ -32,7 +32,7 @@ const ApiService  = {
 
   query(resource, params) {
     const request = applyConverters(Vue.axios)
-      .get(`${resource}`, params)
+      .get(`${resource}`, { params} )
       .catch(error => {
         throw `[MyKoiPond] ApiService ${resource} \n ${error.response.data.message}`;
       });

@@ -10,7 +10,7 @@
                 </b-card>
                 <b-card title="update" v-else>
                     <update
-                        :id="itemId"
+                        :item="item"
                         @createMode="createListener"
                         @reloadMode="reloadListener"
                     ></update>
@@ -33,7 +33,7 @@
 <script>
     import overview from "../../crudl/breed/OverviewBreed";
     import  create from "../../crudl/breed/CreateBreed";
-    import  update from "../../crudl/breed/CreateBreed";
+    import  update from "../../crudl/breed/UpdateBreed";
 
     export default {
         name: "DashboardBreed",
@@ -45,14 +45,15 @@
         data() {
             return {
                 update: false,
-                itemId: null,
+                item: Object,
                 reloadComp: 0,
             }
         },
         methods: {
-            updateListener(id) {
-                console.log('update' + id)
-                this.itemId = id
+            updateListener(item) {
+                console.log('update' + JSON.stringify(item))
+                console.log(item)
+                this.item = item
                 this.update = true
             },
             reloadListener() {
