@@ -75,6 +75,8 @@ apiService.initialize();
 firebase.initializeApp(firebaseConfig);
 
 Vue.config.productionTip = false
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
 
 export default new Vue({
   i18n,

@@ -22,9 +22,9 @@ const getters = {
 
 // Actions
 const actions = {
-  getAllBreeds(context, page, size) {
+  getAllBreeds(context, params) {
     context.commit("startLoading")
-    return apiService.get(apiUrl, page, size)
+    return apiService.query(apiUrl, params)
       .then(({data}) => {
         context.commit("setBreeds", data._embedded.breeds)
         context.commit("endLoading")

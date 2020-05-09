@@ -9,6 +9,8 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@casl/ability": "^4.0.8",
+    "@casl/vue": "^1.0.3",
     "@glidejs/glide": "^3.4.1",
     "axios": "^0.19.2",
     "axios-case-converter": "^0.6.0",

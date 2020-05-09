@@ -1,8 +1,7 @@
 <template>
     <b-form
         @submit="onSubmit"
-        @reset="onReset"
-        v-if="show">
+        @reset="onReset">
 
 
         <b-form-group
@@ -39,10 +38,10 @@
 
 <script>
     export default {
-        name: "CreateBreed",
+        name: "UpdateBreed",
+        props: ['id'],
         data() {
             return {
-                show: true,
                 form: {
                     name: '',
                     description: ''
@@ -61,7 +60,13 @@
             onReset(evt) {
                 this.form.name = ''
                 this.form.description = ''
+            },
+            cancel(){
+                this.$emit('reloadMode')
+                this.$emit('createMode')
             }
+        },
+        mounted() {
         }
     }
 </script>
