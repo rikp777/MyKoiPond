@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: "DetailBreed",
+        name: "DetailSubBreed",
         props: ['item']
     }
 </script>

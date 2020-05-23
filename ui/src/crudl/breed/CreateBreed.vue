@@ -1,8 +1,7 @@
 <template>
     <b-form
         @submit="onSubmit"
-        @reset="onReset"
-        v-if="show">
+        @reset="onReset">
 
 
         <b-form-group
@@ -22,13 +21,13 @@
             id="description"
             label="Description"
             label-for="description">
-            <b-form-input
+            <b-form-textarea
                 id="description"
                 v-model="form.description"
                 type="text"
                 required
                 placeholder="Enter description"
-            ></b-form-input>
+            ></b-form-textarea>
         </b-form-group>
 
 
@@ -52,8 +51,11 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault()
-                this.$store.dispatch("createBreed", this.form)
+                let payload = [this.form]
+                console.log("Breed Module - updating data", payload)
+                this.$store.dispatch("createBreed", payload)
                     .then(() => {
+                        this.addNotification('success filled', `${this.form.name} successfully created`, 'notification')
                         this.onReset()
                         this.$emit('reloadMode')
                     })
@@ -61,6 +63,10 @@
             onReset(evt) {
                 this.form.name = ''
                 this.form.description = ''
+                this.addNotification('warning filled', `Reset Form`, 'notification')
+            },
+            addNotification(type, title, message){
+                this.$notify(type, title, message, { duration: 3000, permanent: false })
             }
         }
     }

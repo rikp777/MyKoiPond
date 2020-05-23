@@ -1,12 +1,12 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "/breeds"
+const apiUrl = "/subbreeds"
 
 // Initial State
 const state = {
     error: null,
-    breeds: [],
-    breed: {},
+    subBreeds: [],
+    subBreed: {},
     isLoading: true,
     page: {
         total: 0
@@ -15,30 +15,30 @@ const state = {
 
 // Getters
 const getters = {
-    breeds(state) {
-        return state.breeds
+    subBreeds(state) {
+        return state.subBreeds
     },
-    breed(state) {
-        return state.breed
+    subBreed(state) {
+        return state.subBreed
     },
-    breedPage(state){
+    subBreedPage(state){
         return state.page
     },
-    breedIsLoading(state){
+    subBreedIsLoading(state){
         return state.isLoading
     },
-    breedError(state){
+    subBreedError(state){
         return state.error
     }
 }
 
 // Actions
 const actions = {
-    getAllBreeds(context, params) {
+    getAllSubBreeds(context, params) {
         context.commit("startLoading")
         return apiService.query(apiUrl, params)
             .then(({data}) => {
-                context.commit("setBreeds", data.embedded.breeds)
+                context.commit("setSubBreeds", data.embedded.subbreeds)
                 context.commit("setPage", data.page)
                 context.commit("endLoading")
             })
@@ -47,32 +47,28 @@ const actions = {
                 throw error
             })
     },
-    createBreed(context, payload) {
-        // alert(JSON.stringify(payload))
+    createSubBreeds(context, payload) {
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setSubBreed", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    updateBreed(context, [selfLink, payload]) {
-        console.log(selfLink)
-        console.log(payload)
+    updateSubBreeds(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
-        console.log(id)
         return apiService.update(apiUrl, id, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setSubBreed", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    deleteBreed(context, [selfLink, payload]) {
+    deleteSubBreeds(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
         return apiService.delete(apiUrl, id)
             .then(() => {
@@ -97,11 +93,11 @@ const mutations = {
     endLoading(state) {
         state.isLoading = false
     },
-    setBreeds(state, data) {
-        state.breeds = data
+    setSubBreeds(state, data) {
+        state.subBreeds = data
     },
-    setBreed(state, data){
-        state.breed = data
+    setSubBreed(state, data){
+        state.subBreed = data
     },
     setPage(state, data){
         state.page.total = data.totalPages -1

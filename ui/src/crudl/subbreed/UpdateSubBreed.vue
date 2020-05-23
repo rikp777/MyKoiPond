@@ -21,13 +21,13 @@
             id="description"
             label="Description"
             label-for="description">
-            <b-form-textarea
+            <b-form-input
                 id="description"
                 v-model="form.description"
                 type="text"
                 required
                 placeholder="Enter description"
-            ></b-form-textarea>
+            ></b-form-input>
         </b-form-group>
 
 
@@ -38,7 +38,7 @@
 
 <script>
     export default {
-        name: "UpdateBreed",
+        name: "UpdateSubBreed",
         props: ['item'],
         data() {
             return {
@@ -53,8 +53,8 @@
                 evt.preventDefault()
                 let self = this.item.links.self.href
                 let payload = [self, this.form]
-                console.log("Breed Module - updating data", payload)
-                this.$store.dispatch("updateBreed", payload)
+                console.log("SubBreed Update - updating data", payload)
+                this.$store.dispatch("updateSubBreed", payload)
                     .then(() => {
                         this.addNotification('success filled', `${this.form.name} successfully updated`, 'notification')
                         this.onReset()

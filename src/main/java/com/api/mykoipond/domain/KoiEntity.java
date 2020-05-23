@@ -11,13 +11,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="kois")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -44,8 +47,12 @@ public class KoiEntity extends BaseEntity {
     private Timestamp updated_at;
 
     //RELATIONS
-        //A Koi has one Pond
-        @OneToOne
+        //many kois have one pond
+        @ManyToOne(
+                fetch = FetchType.EAGER,
+                optional = false
+        )
+        @JoinColumn(name = "pond_id", nullable = false)
         private PondEntity pond;
 
         //A Koi has one SubBreed
@@ -54,6 +61,6 @@ public class KoiEntity extends BaseEntity {
 
         //A Koi has Many KoiParasite registers
         @OneToMany(mappedBy = "koi")
-        private List<KoiParasiteEntity> koiParasites;
+        private Set<KoiParasiteEntity> koiParasites = new HashSet<>();
 
 }

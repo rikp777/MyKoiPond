@@ -69,33 +69,33 @@
     import {mapGetters} from 'vuex'
 
     export default {
-        name: "OverviewBreed",
+        name: "OverviewParasite",
         data() {
             return {}
         },
         computed: {
             ...mapGetters({
-                items: 'breeds',
-                page: 'breedPage',
-                isLoading: 'breedIsLoading',
-                error: 'breedError'
+                items: 'Parasites',
+                page: 'ParasitePage',
+                isLoading: 'ParasiteIsLoading',
+                error: 'ParasiteError'
             })
         },
         methods: {
             refreshList(pageNumber = 1) {
-                console.log("Breed Module - refresh list")
+                console.log("Parasite Module - refresh list")
                 const params = {
                     page: pageNumber,
                     size: 4
                 }
-                this.$store.dispatch("getAllBreeds", params)
+                this.$store.dispatch("getAllParasites", params)
             },
             updateMode(item) {
-                console.log("Breed Overview - UpdateMode")
+                console.log("Parasite Overview - UpdateMode")
                 this.$emit('updateMode', item)
             },
             deleteMode(item){
-                console.log("Breed Overview - DeleteMode")
+                console.log("Parasite Overview - DeleteMode")
                 this.$emit('deleteMode', item)
             }
         },

@@ -1,35 +1,7 @@
 <template>
     <div>
-        <h1>Breed Dashboard</h1>
+        <h1>Pond Dashboard</h1>
         <b-row>
-            <b-colxx xl="6" lg="12" class="mb-4">
-                <b-card title="delete" v-if="deleteItem">
-                    <del
-                        :item="item"
-                        @createMode="createItemListener"
-                        @reloadMode="reloadCompListener"
-                    ></del>
-                </b-card>
-
-                <b-card title="create" v-if="!updateItem && !deleteItem">
-                    <create
-                        @reloadMode="reloadCompListener"
-                    ></create>
-                </b-card>
-                <b-card title="update" v-else-if="!deleteItem">
-                    <update
-                        :item="item"
-                        @createMode="createItemListener"
-                        @reloadMode="reloadCompListener"
-                    ></update>
-                </b-card>
-                <b-card title="details">
-                    <detail
-                        :item="item">
-                    </detail>
-                </b-card>
-
-            </b-colxx>
             <b-colxx xl="6" lg="12" class="mb-4">
                 <b-card title="overview" >
                     <overview
@@ -42,18 +14,17 @@
             </b-colxx>
         </b-row>
     </div>
-
 </template>
 
 <script>
-    import overview from "../../crudl/breed/OverviewBreed";
+    import overview from "../../crudl/koi/OverviewKoi";
     import  create from "../../crudl/breed/CreateBreed";
     import  update from "../../crudl/breed/UpdateBreed";
     import del from "../../crudl/breed/DeleteBreed";
     import detail from "../../crudl/breed/DetailBreed";
 
     export default {
-        name: "DashboardBreed",
+        name: "DashboardPond",
         components: {
             detail,
             del,

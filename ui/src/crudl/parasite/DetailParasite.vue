@@ -7,7 +7,7 @@
 
 <script>
     export default {
-        name: "DetailBreed",
+        name: "DetailParasite",
         props: ['item']
     }
 </script>

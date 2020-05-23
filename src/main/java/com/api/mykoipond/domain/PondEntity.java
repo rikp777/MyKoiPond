@@ -5,20 +5,21 @@ import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="ponds")
 
 //LOMBOK
-@Data
+//https://stackoverflow.com/questions/17445657/hibernate-onetomany-java-lang-stackoverflowerror
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -40,6 +41,21 @@ public class PondEntity extends BaseEntity {
 
     //RELATIONS
         //Has many Users
-        @ManyToMany(fetch = FetchType.EAGER)
-        private List<UserEntity> users;
+        @ManyToMany(
+                cascade = {
+                        CascadeType.PERSIST,
+                        CascadeType.MERGE
+                },
+                fetch = FetchType.EAGER,
+                mappedBy = "ponds"
+        )
+        private Set<UserEntity> users = new HashSet<>();
+
+        // A Pond has many Kois (OneToMany)
+        @OneToMany(
+                mappedBy = "pond",
+                fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL
+        )
+        private Set<KoiEntity> kois = new HashSet<>();
 }

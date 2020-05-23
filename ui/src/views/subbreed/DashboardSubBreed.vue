@@ -1,8 +1,8 @@
 <template>
     <div>
-        <h1>Breed Dashboard</h1>
+        <h1>SubBreed Dashboard</h1>
         <b-row>
-            <b-colxx xl="6" lg="12" class="mb-4">
+            <b-colxx xl="4" lg="12" class="mb-4">
                 <b-card title="delete" v-if="deleteItem">
                     <del
                         :item="item"
@@ -30,7 +30,7 @@
                 </b-card>
 
             </b-colxx>
-            <b-colxx xl="6" lg="12" class="mb-4">
+            <b-colxx xl="8" lg="12" class="mb-4">
                 <b-card title="overview" >
                     <overview
                         :key="reloadComp"
@@ -46,14 +46,14 @@
 </template>
 
 <script>
-    import overview from "../../crudl/breed/OverviewBreed";
-    import  create from "../../crudl/breed/CreateBreed";
-    import  update from "../../crudl/breed/UpdateBreed";
-    import del from "../../crudl/breed/DeleteBreed";
-    import detail from "../../crudl/breed/DetailBreed";
+    import overview from "../../crudl/subbreed/OverviewSubBreed";
+    import  create from "../../crudl/subbreed/CreateSubBreed";
+    import  update from "../../crudl/subbreed/UpdateSubBreed";
+    import del from "../../crudl/subbreed/DeleteSubBreed";
+    import detail from "../../crudl/subbreed/DetailSubBreed";
 
     export default {
-        name: "DashboardBreed",
+        name: "DashboardSubBreed",
         components: {
             detail,
             del,

@@ -1,12 +1,13 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "/breeds"
+let pond_id = 1
+const apiUrl = `/ponds/${pond_id}/kois`//related to pond
 
 // Initial State
 const state = {
     error: null,
-    breeds: [],
-    breed: {},
+    kois: [],
+    koi: {},
     isLoading: true,
     page: {
         total: 0
@@ -15,64 +16,68 @@ const state = {
 
 // Getters
 const getters = {
-    breeds(state) {
-        return state.breeds
+    kois(state) {
+        return state.kois
     },
-    breed(state) {
-        return state.breed
+    koi(state) {
+        return state.koi
     },
-    breedPage(state){
-        return state.page
+    koiPage(state){
+        return state.koi
     },
-    breedIsLoading(state){
+    koiIsLoading(state){
         return state.isLoading
     },
-    breedError(state){
+    koiError(state){
         return state.error
     }
 }
 
 // Actions
 const actions = {
-    getAllBreeds(context, params) {
+    getAllKois(context, params) {
+        console.log("raak")
         context.commit("startLoading")
         return apiService.query(apiUrl, params)
             .then(({data}) => {
-                context.commit("setBreeds", data.embedded.breeds)
-                context.commit("setPage", data.page)
+                context.commit("setKois", data.embedded.kois)
+                if(data.page){
+                    context.commit("setPage", data.page)
+                }
                 context.commit("endLoading")
             })
             .catch((error) => {
+                console.log("error sdfs")
                 context.commit("setError", true)
                 throw error
             })
     },
-    createBreed(context, payload) {
+    createKoi(context, payload) {
         // alert(JSON.stringify(payload))
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setKoi", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    updateBreed(context, [selfLink, payload]) {
+    updateKoi(context, [selfLink, payload]) {
         console.log(selfLink)
         console.log(payload)
         let id = apiService.getId(selfLink)
         console.log(id)
         return apiService.update(apiUrl, id, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setKoi", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    deleteBreed(context, [selfLink, payload]) {
+    deleteKoi(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
         return apiService.delete(apiUrl, id)
             .then(() => {
@@ -97,11 +102,12 @@ const mutations = {
     endLoading(state) {
         state.isLoading = false
     },
-    setBreeds(state, data) {
-        state.breeds = data
+    setKois(state, data) {
+        state.kois = data
+        console.log(state.kois)
     },
-    setBreed(state, data){
-        state.breed = data
+    setKoi(state, data){
+        state.koi = data
     },
     setPage(state, data){
         state.page.total = data.totalPages -1

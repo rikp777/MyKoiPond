@@ -10,8 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table(name="users")
@@ -53,18 +52,26 @@ public class UserEntity extends BaseEntity{
     //RELATIONS
         //Has many Ponds
         @ManyToMany(
-            mappedBy = "users",
-//            fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL
+                fetch = FetchType.LAZY
         )
-        private List<PondEntity> ponds;
+        @JoinTable(
+                name = "pond_user",
+                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "pond_id", referencedColumnName = "id")
+        )
+        private Set<PondEntity> ponds = new HashSet<>();
+
 
         @ManyToMany(
-                mappedBy = "users",
-                fetch = FetchType.EAGER
+                fetch = FetchType.LAZY
         )
-        private List<RoleEntity> roles = new ArrayList<>();
+        @JoinTable(
+                name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+        )
+        private Set<RoleEntity> roles = new HashSet<>();
 
         @ManyToMany()
-        private List<PermissionEntity> permissions = new ArrayList<>();
+        private Set<PermissionEntity> permissions = new HashSet<>();
 }

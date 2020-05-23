@@ -10,7 +10,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="permissions")
@@ -27,6 +29,6 @@ public class PermissionEntity extends BaseEntity{
     private String name;
 
     @ManyToMany(mappedBy="permissions")
-    private List<UserEntity> users;
+    private Set<UserEntity> users = new HashSet<>();
 }
 

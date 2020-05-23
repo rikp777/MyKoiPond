@@ -34,7 +34,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
     public void saveUser(UserEntity userEntity){
         userEntity.setPassword(bCryptPasswordEncoder.encode(userEntity.getPassword()));
         RoleEntity roleEntity = roleRepository.findByName("ADMIN");
-        userEntity.setRoles(Arrays.asList(roleEntity));
+        userEntity.getRoles().add(roleEntity);
         userRepository.save(userEntity);
     }
 
@@ -42,7 +42,7 @@ public class UserPrincipalDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         UserEntity userEntity = userRepository.findByEmail(email);
         if(userEntity != null) {
-            List<GrantedAuthority> authorities = getUserAuthority(userEntity.getRoles());
+            List<GrantedAuthority> authorities = getUserAuthority(new ArrayList<>(userEntity.getRoles()));
             return buildUserForAuthentication(userEntity, authorities);
         } else {
             throw new UsernameNotFoundException("username not found");

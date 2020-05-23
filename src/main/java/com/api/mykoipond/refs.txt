@@ -1,0 +1,2 @@
+https://stackoverflow.com/questions/23056091/selectively-expand-associations-in-spring-data-rest-responsehttps://stackoverflow.com/questions/23056091/selectively-expand-associations-in-spring-data-rest-response
+https://stackoverflow.com/questions/19280121/spring-and-or-hibernate-saving-many-to-many-relations-from-one-side-after-form/

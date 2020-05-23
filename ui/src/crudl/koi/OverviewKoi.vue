@@ -43,9 +43,8 @@
                 </div>
             </div>
         </template>
-
         <paginate
-            v-if="!error"
+            v-if="!error && page.total"
             v-model="page.self"
             :page-count="page.total"
             :margin-pages="2"
@@ -69,33 +68,33 @@
     import {mapGetters} from 'vuex'
 
     export default {
-        name: "OverviewBreed",
+        name: "OverviewKoi",
         data() {
             return {}
         },
         computed: {
             ...mapGetters({
-                items: 'breeds',
-                page: 'breedPage',
-                isLoading: 'breedIsLoading',
-                error: 'breedError'
+                items: 'kois',
+                page: 'koiPage',
+                isLoading: 'koiIsLoading',
+                error: 'koiError'
             })
         },
         methods: {
             refreshList(pageNumber = 1) {
-                console.log("Breed Module - refresh list")
+                console.log("Koi Overview - refresh list")
                 const params = {
                     page: pageNumber,
                     size: 4
                 }
-                this.$store.dispatch("getAllBreeds", params)
+                this.$store.dispatch("getAllKois", params)
             },
             updateMode(item) {
-                console.log("Breed Overview - UpdateMode")
+                console.log("Koi Overview - UpdateMode")
                 this.$emit('updateMode', item)
             },
             deleteMode(item){
-                console.log("Breed Overview - DeleteMode")
+                console.log("Koi Overview - DeleteMode")
                 this.$emit('deleteMode', item)
             }
         },

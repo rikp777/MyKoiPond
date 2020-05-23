@@ -69,33 +69,33 @@
     import {mapGetters} from 'vuex'
 
     export default {
-        name: "OverviewBreed",
+        name: "OverviewSubBreed",
         data() {
             return {}
         },
         computed: {
             ...mapGetters({
-                items: 'breeds',
-                page: 'breedPage',
-                isLoading: 'breedIsLoading',
-                error: 'breedError'
+                items: 'subBreeds',
+                page: 'subBreedPage',
+                isLoading: 'subBreedIsLoading',
+                error: 'subBreedError'
             })
         },
         methods: {
             refreshList(pageNumber = 1) {
-                console.log("Breed Module - refresh list")
+                console.log("SubBreed Overview - refresh list")
                 const params = {
                     page: pageNumber,
                     size: 4
                 }
-                this.$store.dispatch("getAllBreeds", params)
+                this.$store.dispatch("getAllSubBreeds", params)
             },
             updateMode(item) {
-                console.log("Breed Overview - UpdateMode")
+                console.log("SubBreed Overview - UpdateMode")
                 this.$emit('updateMode', item)
             },
             deleteMode(item){
-                console.log("Breed Overview - DeleteMode")
+                console.log("SubBreed Overview - DeleteMode")
                 this.$emit('deleteMode', item)
             }
         },

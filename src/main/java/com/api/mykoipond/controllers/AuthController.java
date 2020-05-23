@@ -43,12 +43,8 @@ public class AuthController {
             String username = data.getEmail();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
 
-            Set<RoleEntity> roleEntitySet = new HashSet<>();
-            List<RoleEntity> roleEntityList = this.users.findByEmail(username).getRoles();
-            roleEntityList.forEach((role) -> {
-                roleEntitySet.add(role);
-            });
 
+            Set<RoleEntity> roleEntitySet = this.users.findByEmail(username).getRoles();
             String token = jwtTokenProvider.createToken(username, roleEntitySet);
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);

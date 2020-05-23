@@ -5,8 +5,8 @@ const apiUrl = "/breeds"
 // Initial State
 const state = {
     error: null,
-    breeds: [],
-    breed: {},
+    ponds: [],
+    pond: {},
     isLoading: true,
     page: {
         total: 0
@@ -15,30 +15,30 @@ const state = {
 
 // Getters
 const getters = {
-    breeds(state) {
-        return state.breeds
+    ponds(state) {
+        return state.ponds
     },
-    breed(state) {
-        return state.breed
+    pond(state) {
+        return state.pond
     },
-    breedPage(state){
+    pondPage(state){
         return state.page
     },
-    breedIsLoading(state){
+    pondIsLoading(state){
         return state.isLoading
     },
-    breedError(state){
+    pondError(state){
         return state.error
     }
 }
 
 // Actions
 const actions = {
-    getAllBreeds(context, params) {
+    getAllPonds(context, params) {
         context.commit("startLoading")
         return apiService.query(apiUrl, params)
             .then(({data}) => {
-                context.commit("setBreeds", data.embedded.breeds)
+                context.commit("setPonds", data.embedded.ponds)
                 context.commit("setPage", data.page)
                 context.commit("endLoading")
             })
@@ -47,32 +47,32 @@ const actions = {
                 throw error
             })
     },
-    createBreed(context, payload) {
+    createPond(context, payload) {
         // alert(JSON.stringify(payload))
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setPond", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    updateBreed(context, [selfLink, payload]) {
+    updatePond(context, [selfLink, payload]) {
         console.log(selfLink)
         console.log(payload)
         let id = apiService.getId(selfLink)
         console.log(id)
         return apiService.update(apiUrl, id, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setPond", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    deleteBreed(context, [selfLink, payload]) {
+    deletePond(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
         return apiService.delete(apiUrl, id)
             .then(() => {
@@ -97,11 +97,11 @@ const mutations = {
     endLoading(state) {
         state.isLoading = false
     },
-    setBreeds(state, data) {
-        state.breeds = data
+    setPonds(state, data) {
+        state.ponds = data
     },
-    setBreed(state, data){
-        state.breed = data
+    setPond(state, data){
+        state.pond = data
     },
     setPage(state, data){
         state.page.total = data.totalPages -1

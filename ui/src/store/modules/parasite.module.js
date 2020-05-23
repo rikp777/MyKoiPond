@@ -1,12 +1,12 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "/breeds"
+const apiUrl = "/parasites"
 
 // Initial State
 const state = {
     error: null,
-    breeds: [],
-    breed: {},
+    Parasites: [],
+    Parasite: {},
     isLoading: true,
     page: {
         total: 0
@@ -15,30 +15,30 @@ const state = {
 
 // Getters
 const getters = {
-    breeds(state) {
-        return state.breeds
+    Parasites(state) {
+        return state.Parasites
     },
-    breed(state) {
-        return state.breed
+    Parasite(state) {
+        return state.Parasite
     },
-    breedPage(state){
+    ParasitePage(state){
         return state.page
     },
-    breedIsLoading(state){
+    ParasiteIsLoading(state){
         return state.isLoading
     },
-    breedError(state){
+    ParasiteError(state){
         return state.error
     }
 }
 
 // Actions
 const actions = {
-    getAllBreeds(context, params) {
+    getAllParasites(context, params) {
         context.commit("startLoading")
         return apiService.query(apiUrl, params)
             .then(({data}) => {
-                context.commit("setBreeds", data.embedded.breeds)
+                context.commit("setParasites", data.embedded.parasites)
                 context.commit("setPage", data.page)
                 context.commit("endLoading")
             })
@@ -47,32 +47,32 @@ const actions = {
                 throw error
             })
     },
-    createBreed(context, payload) {
+    createParasite(context, payload) {
         // alert(JSON.stringify(payload))
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setParasite", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    updateBreed(context, [selfLink, payload]) {
+    updateParasite(context, [selfLink, payload]) {
         console.log(selfLink)
         console.log(payload)
         let id = apiService.getId(selfLink)
         console.log(id)
         return apiService.update(apiUrl, id, payload)
             .then(({data}) => {
-                context.commit("setBreed", data)
+                context.commit("setParasite", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    deleteBreed(context, [selfLink, payload]) {
+    deleteParasite(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
         return apiService.delete(apiUrl, id)
             .then(() => {
@@ -97,11 +97,11 @@ const mutations = {
     endLoading(state) {
         state.isLoading = false
     },
-    setBreeds(state, data) {
-        state.breeds = data
+    setParasites(state, data) {
+        state.Parasites = data
     },
-    setBreed(state, data){
-        state.breed = data
+    setParasite(state, data){
+        state.Parasite = data
     },
     setPage(state, data){
         state.page.total = data.totalPages -1

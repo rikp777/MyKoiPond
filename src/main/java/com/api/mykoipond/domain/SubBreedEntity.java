@@ -9,7 +9,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="subbreeds")
@@ -45,5 +47,5 @@ public class SubBreedEntity extends BaseEntity{
 
         //One subbreed has many kois
         @OneToMany(mappedBy = "subBreed")
-        private List<KoiEntity> kois;
+        private Set<KoiEntity> kois = new HashSet<>();
 }
