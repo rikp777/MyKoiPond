@@ -50,7 +50,7 @@ public class Initializer {
     @EventListener
     public void run(ContextRefreshedEvent event) {
         pondTableSeeder();
-//        roleTableSeeder();
+        roleTableSeeder();
         userTableSeeder();
         breedTableSeeder();
         koiTableSeeder();
@@ -94,7 +94,7 @@ public class Initializer {
                         .email("rik@test.nl")
                         .password("password")
                         .username("Rik")
-//                        .roles(new HashSet<>(roleEntities))
+                        .roles(new HashSet<>(roleEntities))
                         .ponds(new HashSet<>(pondEntities))
                         .build()
         );
