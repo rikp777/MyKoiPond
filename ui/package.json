@@ -1,12 +1,13 @@
 {
   "name": "MyKoiPond",
   "version": "1.0.0",
+  "private": true,
   "description": "School Project Semester 4 Fontys",
   "author": "Rik Peeters",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit --watch"
   },
   "dependencies": {
     "@casl/ability": "^4.0.8",
@@ -53,8 +54,10 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.2",
     "@vue/cli-plugin-router": "^4.1.2",
+    "@vue/cli-plugin-unit-jest": "~4.4.0",
     "@vue/cli-plugin-vuex": "^4.1.2",
     "@vue/cli-service": "^4.1.2",
+    "@vue/test-utils": "^1.0.3",
     "copy-webpack-plugin": "^5.1.1",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
