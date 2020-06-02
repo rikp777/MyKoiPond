@@ -1,9 +1,6 @@
 # MyKoiPond 
 
 [![Build Status](https://travis-ci.org/rikp777/MyKoiPond.svg?branch=master)](https://travis-ci.org/rikp777/MyKoiPond)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=com.api:mykoipond&metric=alert_status)](https://sonarcloud.io/dashboard/index/com.api:mykoipond)
-[![codecov](https://codecov.io/gh/rikp777/MyKoiPond/branch/master/graph/badge.svg)](https://codecov.io/gh/rikp777/MyKoiPond)
-![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/rikp777/my-koi-pond)
 
 School Project Semester 4 Fontys
 

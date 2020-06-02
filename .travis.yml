@@ -17,7 +17,7 @@ install:
 
 script:
   - mvn clean install sonar:sonar -Pcoverage -Dsonar.projectKey=com.api:mykoipond
-  - docker build -t docker.io/$DOCKER_USERNAME/my-koi-pond:latest .
+  - docker build -t docker.io/$DOCKER_USERNAME/mykoipond:latest .
 
 cache:
   directories:
@@ -30,4 +30,4 @@ before_install:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-  - docker push docker.io/$DOCKER_USERNAME/my-koi-pond:latest
+  - docker push docker.io/$DOCKER_USERNAME/mykoipond:latest
