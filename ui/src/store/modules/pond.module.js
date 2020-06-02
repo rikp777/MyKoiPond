@@ -1,6 +1,6 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "/breeds"
+const apiUrl = "/users/1/ponds"
 
 // Initial State
 const state = {
@@ -39,7 +39,9 @@ const actions = {
         return apiService.query(apiUrl, params)
             .then(({data}) => {
                 context.commit("setPonds", data.embedded.ponds)
-                context.commit("setPage", data.page)
+                if(data.page){
+                    context.commit("setPage", data.page)
+                }
                 context.commit("endLoading")
             })
             .catch((error) => {
@@ -98,6 +100,8 @@ const mutations = {
         state.isLoading = false
     },
     setPonds(state, data) {
+        console.log("rak")
+        console.log(data)
         state.ponds = data
     },
     setPond(state, data){

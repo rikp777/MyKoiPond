@@ -1,0 +1,26 @@
+#============SERVER============
+# HTTP server port
+server:
+  port: 7070
+
+  # Context path of the application
+  servlet:
+    context-path: /api
+
+    # Default HTTP session time out
+    session:
+      timeout: 15m
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: root
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        enable_lazy_load_no_trans: true

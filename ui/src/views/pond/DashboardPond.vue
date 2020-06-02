@@ -17,19 +17,11 @@
 </template>
 
 <script>
-    import overview from "../../crudl/koi/OverviewKoi";
-    import  create from "../../crudl/breed/CreateBreed";
-    import  update from "../../crudl/breed/UpdateBreed";
-    import del from "../../crudl/breed/DeleteBreed";
-    import detail from "../../crudl/breed/DetailBreed";
+    import overview from "../../crudl/pond/OverviewPond";
 
     export default {
         name: "DashboardPond",
         components: {
-            detail,
-            del,
-            update,
-            create,
             overview
         },
         data() {

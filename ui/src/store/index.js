@@ -8,6 +8,7 @@ import breed from './modules/breed.module'
 import subBreed from './modules/subbreed.module'
 import koi from './modules/koi.module'
 import parasite from './modules/parasite.module'
+import pond from './modules/pond.module'
 
 Vue.use(Vuex)
 
@@ -30,6 +31,7 @@ export default new Vuex.Store({
         breed,
         subBreed,
         koi,
-        parasite
+        parasite,
+        pond
     }
 })

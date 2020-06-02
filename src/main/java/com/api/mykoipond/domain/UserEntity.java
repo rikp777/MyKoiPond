@@ -62,14 +62,15 @@ public class UserEntity extends BaseEntity{
         private Set<PondEntity> ponds = new HashSet<>();
 
 
-        @ManyToMany(
-                fetch = FetchType.LAZY
-        )
-        @JoinTable(
-                name = "user_role",
-                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-                inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-        )
+//        @ManyToMany(
+//                fetch = FetchType.LAZY
+//        )
+//        @JoinTable(
+//                name = "user_role",
+//                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+//                inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+//        )
+        @ManyToMany()
         private Set<RoleEntity> roles = new HashSet<>();
 
         @ManyToMany()
