@@ -15,19 +15,14 @@ addons:
 install:
   - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
 
-script:
-  - mvn clean install sonar:sonar -Pcoverage -Dsonar.projectKey=com.api:mykoipond
-  - docker build -t docker.io/$DOCKER_USERNAME/mykoipond:latest .
-
-cache:
-  directories:
-    - "$HOME/.m2/repository"
-    - "$HOME/.sonar/cache"
-
 before_install:
   - chmod +x mvnw
 
+script:
+  - mvn clean install sonar:sonar -Pcoverage -Dsonar.projectKey=com.api:mykoipond
+  - docker build -t docker.io/$DOCKER_USERNAME/my-koi-pond:latest .
+
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
   - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
   - docker push docker.io/$DOCKER_USERNAME/my-koi-pond:latest
+  - bash <(curl -s https://codecov.io/bash)
