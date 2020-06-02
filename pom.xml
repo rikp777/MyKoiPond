@@ -51,6 +51,11 @@
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
         <!--Spice up your java: Automatic Resource Management, automatic generation-->
         <!--of getters, setters, equals, hashCode and toString, and more!-->
         <dependency>
