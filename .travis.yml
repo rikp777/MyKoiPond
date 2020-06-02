@@ -16,7 +16,7 @@ install:
   - "mvn -N io.takari:maven:wrapper -Dmaven=${MAVEN_VERSION}"
 
 script:
-  - mvn clean install sonar:sonar -Pcoverage -Dsonar.projectKey=MyKoiPond
+  - mvn clean install sonar:sonar -Pcoverage -Dsonar.projectKey=com.api:mykoipond
   - docker build -t docker.io/$DOCKER_USERNAME/my-koi-pond:latest .
 
 cache:

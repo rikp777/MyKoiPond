@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.api</groupId>
     <artifactId>mykoipond</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0</version>
     <name>MyKoiPond</name>
     <description>School Project Semester 4 Fontys</description>
 

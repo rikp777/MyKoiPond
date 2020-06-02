@@ -8,13 +8,13 @@ VOLUME /tmp
 EXPOSE 8081
 
 # The application's jar file
-ARG JAR_FILE=target/mykoipond-1.0.jar
+ARG JAR_FILE=target/my-koi-pond-1.0.jar
 
 RUN mkdir /api
 WORKDIR /api
 
 # Add the application's jar to the container
-ADD ${JAR_FILE} /api/mykoipond-1.0.jar
+ADD ${JAR_FILE} /api/my-koi-pond-1.0.jar
 
 # Run the jar file
-ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/api/mykoipond-1.0.jar"]
+ENTRYPOINT ["java", "-Djava.security.egd=file:/dev/./urandom","-jar","/api/my-koi-pond-1.0.jar"]
