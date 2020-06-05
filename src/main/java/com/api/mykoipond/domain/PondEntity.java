@@ -20,6 +20,7 @@ import java.util.Set;
 //https://stackoverflow.com/questions/17445657/hibernate-onetomany-java-lang-stackoverflowerror
 @Getter
 @Setter
+//===
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -54,7 +55,7 @@ public class PondEntity extends BaseEntity {
         // A Pond has many Kois (OneToMany)
         @OneToMany(
                 mappedBy = "pond",
-                fetch = FetchType.LAZY,
+                fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL
         )
         private Set<KoiEntity> kois = new HashSet<>();

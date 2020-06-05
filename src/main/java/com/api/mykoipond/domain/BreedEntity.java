@@ -15,7 +15,8 @@ import java.util.Set;
 @Table(name="breeds")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -35,7 +36,7 @@ public class BreedEntity extends BaseEntity{
         // A Breed has many SubBreeds (OneToMany)
         @OneToMany(
                 mappedBy = "breed",
-                fetch = FetchType.LAZY,
+                fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL
         )
         private Set<SubBreedEntity> subBreeds = new HashSet<>();

@@ -87,6 +87,8 @@ public class Initializer {
         }
     }
     public void userTableSeeder() {
+        HashSet<PondEntity> ponds = new HashSet<>(pondEntities);
+        System.out.println(ponds.toString());
         userEntities = Arrays.asList(
                 UserEntity.builder()
                         .firstName("Rik")
@@ -95,7 +97,7 @@ public class Initializer {
                         .password("password")
                         .username("Rik")
                         .roles(new HashSet<>(roleEntities))
-                        .ponds(new HashSet<>(pondEntities))
+                        .ponds(ponds)
                         .build()
         );
         if (userRepository.findAll().size() == 0) {

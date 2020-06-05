@@ -17,7 +17,8 @@ import java.util.Set;
 @Table(name="subbreeds")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -39,7 +40,7 @@ public class SubBreedEntity extends BaseEntity{
     //RELATIONS
         //Many subbreeds have one breed
         @ManyToOne(
-                fetch = FetchType.EAGER,
+                fetch = FetchType.LAZY,
                 optional = false
         )
         @JoinColumn(name = "breed_id", nullable = false)

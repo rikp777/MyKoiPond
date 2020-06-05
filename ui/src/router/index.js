@@ -5,6 +5,7 @@ import pond from './routes/pond.route'
 import breed from './routes/breed.route'
 import subBreed from './routes/subbreed.route'
 import parasite from './routes/parasite.route'
+import koi from './routes/koi.route'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,8 @@ const routes = [
     ...pond,
     ...breed,
     ...subBreed,
-    ...parasite
+    ...parasite,
+    ...koi
 ]
 
 const router = new VueRouter({

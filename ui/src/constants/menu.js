@@ -23,9 +23,16 @@ const data = [
         ]
     },
     {
+        id: 'pond',
         icon: "iconsminds-fish",
         label: "menu.pond",
         to: "/pond",
+    },
+    {
+        id: 'koi',
+        icon: "iconsminds-fish",
+        label: "menu.koi",
+        to: "/koi",
     },
 ];
 export default data;

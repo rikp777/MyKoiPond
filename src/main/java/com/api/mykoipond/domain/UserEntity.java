@@ -16,7 +16,8 @@ import java.util.*;
 @Table(name="users")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -62,15 +63,14 @@ public class UserEntity extends BaseEntity{
         private Set<PondEntity> ponds = new HashSet<>();
 
 
-//        @ManyToMany(
-//                fetch = FetchType.LAZY
-//        )
-//        @JoinTable(
-//                name = "user_role",
-//                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-//                inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-//        )
-        @ManyToMany()
+        @ManyToMany(
+                fetch = FetchType.LAZY
+        )
+        @JoinTable(
+                name = "user_role",
+                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
+        )
         private Set<RoleEntity> roles = new HashSet<>();
 
         @ManyToMany()

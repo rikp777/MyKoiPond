@@ -14,7 +14,8 @@ import java.util.Set;
 @Table(name="roles")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -24,16 +25,13 @@ public class RoleEntity extends BaseEntity{
     @NotEmpty
     private String name;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "roles_users",
-//            joinColumns = @JoinColumn(name= "roles_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "users_id", referencedColumnName = "id")
-//    )
-//    @ManyToMany(
-//            fetch = FetchType.EAGER,
-//            mappedBy = "roles"
-//    )
-    @ManyToMany(mappedBy="roles")
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            fetch = FetchType.LAZY,
+            mappedBy = "roles"
+    )
     private Set<UserEntity> users = new HashSet<>();
 }
