@@ -10,5 +10,5 @@ import java.util.Set;
 public interface PondProjection {
     String getName();
     String getDescription();
-    Set<KoiEntity> getKois();
+    Set<KoiProjection> getKois();
 }

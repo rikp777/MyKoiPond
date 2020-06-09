@@ -20,6 +20,8 @@
                 </b-card>
                 <b-card title="update" v-else-if="!deleteItem">
                     <update
+                        :ponds="ponds"
+                        :breeds="breeds"
                         :item="item"
                         @createMode="createItemListener"
                         @reloadMode="reloadCompListener"
@@ -50,7 +52,7 @@
 <script>
     import overview from "../../crudl/koi/OverviewKoi";
     import  create from "../../crudl/koi/CreateKoi";
-    import  update from "../../crudl/parasite/UpdateParasite";
+    import  update from "../../crudl/koi/UpdateKoi";
     import del from "../../crudl/parasite/DeleteParasite";
     import detail from "../../crudl/parasite/DetailParasite";
     import {mapGetters} from "vuex";

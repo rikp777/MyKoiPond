@@ -30,7 +30,7 @@ const ApiService = {
         // }
     },
 
-    query(resource, params) {
+    query(resource,  params = "") {
         const request = applyConverters(Vue.axios)
             .get(`${resource}`, {params})
             .catch(error => {

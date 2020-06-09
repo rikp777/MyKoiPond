@@ -779,7 +779,7 @@ public class Initializer {
                         .name("Jantje")
                         .description("Beste koi in de vijver")
                         .birth(new Date(Calendar.getInstance().getTime().getTime()))
-                        .sex("man")
+                        .sex("male")
                         .pond(pondEntities.get(0))
                         .subBreed(subBreedEntities.get(3))
                         .build(),
@@ -787,7 +787,7 @@ public class Initializer {
                         .name("Clau")
                         .description("Mooie vis")
                         .birth(new Date(Calendar.getInstance().getTime().getTime()))
-                        .sex("femaile")
+                        .sex("female")
                         .pond(pondEntities.get(0))
                         .subBreed(subBreedEntities.get(2))
                         .build(),
@@ -795,7 +795,7 @@ public class Initializer {
                         .name("Geertje")
                         .description("Beste koi in de vijver")
                         .birth(new Date(Calendar.getInstance().getTime().getTime()))
-                        .sex("man")
+                        .sex("male")
                         .pond(pondEntities.get(1))
                         .subBreed(subBreedEntities.get(0))
                         .build(),
@@ -803,7 +803,7 @@ public class Initializer {
                         .name("Sam")
                         .description("Mooie vis")
                         .birth(new Date(Calendar.getInstance().getTime().getTime()))
-                        .sex("femaile")
+                        .sex("female")
                         .pond(pondEntities.get(1))
                         .subBreed(subBreedEntities.get(4))
                         .build()

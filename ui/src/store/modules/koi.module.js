@@ -54,7 +54,7 @@ const actions = {
     },
     createKoi(context, payload) {
         // alert(JSON.stringify(payload))
-        return apiService.post(apiUrl, payload)
+        return apiService.post('/kois', payload)
             .then(({data}) => {
                 context.commit("setKoi", data)
             })
@@ -68,7 +68,7 @@ const actions = {
         console.log(payload)
         let id = apiService.getId(selfLink)
         console.log(id)
-        return apiService.update(apiUrl, id, payload)
+        return apiService.update('/kois', id, payload)
             .then(({data}) => {
                 context.commit("setKoi", data)
             })

@@ -17,6 +17,7 @@
                                     </thead>
                                     <tbody>
                                     <tr v-for="koi in pond.kois">
+
                                         <td>{{koi.name}}</td>
                                         <td>{{koi.birth}}</td>
                                         <td>{{koi.sex}}</td>

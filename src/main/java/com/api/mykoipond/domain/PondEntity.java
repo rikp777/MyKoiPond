@@ -56,7 +56,8 @@ public class PondEntity extends BaseEntity {
         @OneToMany(
                 mappedBy = "pond",
                 fetch = FetchType.EAGER,
-                cascade = CascadeType.ALL
+                cascade = CascadeType.ALL,
+                orphanRemoval = true
         )
         private Set<KoiEntity> kois = new HashSet<>();
 }
