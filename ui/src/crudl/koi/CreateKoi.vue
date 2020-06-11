@@ -56,10 +56,11 @@
                 <template v-slot:first>
                     <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
                 </template>
-                <b-form-select-option-group v-for="(breed, index) in breeds" :label="breed.name">
+                <b-form-select-option-group v-for="(breed, index) in breeds" :label="breed.name" :key="index">
                     <option
                         v-for="(subBreed, index) in breed.subBreeds"
                         :value="subBreed.links.self.href"
+                        :key="index"
                     >
                         {{subBreed.name}}
                     </option>

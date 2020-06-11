@@ -3,6 +3,34 @@
         <h1>Pond Dashboard</h1>
         <b-row>
             <b-colxx xl="6" lg="12" class="mb-4">
+                <b-card title="delete" v-if="deleteItem">
+                    <del
+                        :item="item"
+                        @createMode="createItemListener"
+                        @reloadMode="reloadCompListener"
+                    ></del>
+                </b-card>
+
+                <b-card title="create" v-if="!updateItem && !deleteItem">
+                    <create
+                        @reloadMode="reloadCompListener"
+                    ></create>
+                </b-card>
+                <b-card title="update" v-else-if="!deleteItem">
+                    <update
+                        :item="item"
+                        @createMode="createItemListener"
+                        @reloadMode="reloadCompListener"
+                    ></update>
+                </b-card>
+                <b-card title="details">
+                    <detail
+                        :item="item">
+                    </detail>
+                </b-card>
+
+            </b-colxx>
+            <b-colxx xl="6" lg="12" class="mb-4">
                 <b-card title="overview" >
                     <overview
                         :key="reloadComp"
@@ -14,14 +42,23 @@
             </b-colxx>
         </b-row>
     </div>
+
 </template>
 
 <script>
     import overview from "../../crudl/pond/OverviewPond";
+    import  create from "../../crudl/pond/CreatePond";
+    import  update from "../../crudl/pond/UpdatePond";
+    import del from "../../crudl/pond/DeletePond";
+    import detail from "../../crudl/pond/DetailPond";
 
     export default {
         name: "DashboardPond",
         components: {
+            detail,
+            del,
+            update,
+            create,
             overview
         },
         data() {

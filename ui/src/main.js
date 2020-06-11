@@ -71,6 +71,8 @@ Vue.use(VueScrollTo);
 
 import apiService from "./services/api.service";
 apiService.initialize();
+import AccessControl from "./services/accessControl.service";
+AccessControl.router(store, router)
 
 firebase.initializeApp(firebaseConfig);
 

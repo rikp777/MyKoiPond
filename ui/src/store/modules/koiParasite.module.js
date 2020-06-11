@@ -1,12 +1,13 @@
 import apiService from '../../services/api.service'
 
-const apiUrl = "/parasites"
+let koi_id = 1
+const apiUrl = `/kois/${koi_id}/koiParasites`//related to pond
 
 // Initial State
 const state = {
     error: null,
-    parasites: [],
-    parasite: {},
+    koiParasites: [],
+    koiParasite: {},
     isLoading: true,
     page: {
         total: 0
@@ -15,31 +16,33 @@ const state = {
 
 // Getters
 const getters = {
-    parasites(state) {
-        return state.parasites
+    koiParasites(state) {
+        return state.koiParasites
     },
-    parasite(state) {
-        return state.parasite
+    koiParasite(state) {
+        return state.koiParasite
     },
-    parasitePage(state){
+    koiParasitePage(state){
         return state.page
     },
-    parasiteIsLoading(state){
+    koiParasiteIsLoading(state){
         return state.isLoading
     },
-    parasiteError(state){
+    koiParasiteError(state){
         return state.error
     }
 }
 
 // Actions
 const actions = {
-    getAllParasites(context, params) {
+    getAllKoiParasites(context, params) {
         context.commit("startLoading")
-        return apiService.query(apiUrl, params)
+        return apiService.query(apiUrl)
             .then(({data}) => {
-                context.commit("setParasites", data.embedded.parasites)
-                context.commit("setPage", data.page)
+                context.commit("setKoiParasites", data.embedded.koiParasites)
+                if(data.page) {
+                    context.commit("setPage", data.page)
+                }
                 context.commit("endLoading")
             })
             .catch((error) => {
@@ -47,32 +50,32 @@ const actions = {
                 throw error
             })
     },
-    createParasite(context, payload) {
+    createKoiParasite(context, payload) {
         // alert(JSON.stringify(payload))
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
-                context.commit("setParasite", data)
+                context.commit("setKoiParasite", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    updateParasite(context, [selfLink, payload]) {
+    updateKoiParasite(context, [selfLink, payload]) {
         console.log(selfLink)
         console.log(payload)
         let id = apiService.getId(selfLink)
         console.log(id)
         return apiService.update(apiUrl, id, payload)
             .then(({data}) => {
-                context.commit("setParasite", data)
+                context.commit("setKoiParasite", data)
             })
             .catch((error) => {
                 context.commit("setError", true)
                 throw error
             })
     },
-    deleteParasite(context, [selfLink, payload]) {
+    deleteKoiParasite(context, [selfLink, payload]) {
         let id = apiService.getId(selfLink)
         return apiService.delete(apiUrl, id)
             .then(() => {
@@ -97,11 +100,11 @@ const mutations = {
     endLoading(state) {
         state.isLoading = false
     },
-    setParasites(state, data) {
-        state.parasites = data
+    setKoiParasites(state, data) {
+        state.koiParasites = data
     },
-    setParasite(state, data){
-        state.parasite = data
+    setKoiParasite(state, data){
+        state.koiParasite = data
     },
     setPage(state, data){
         state.page.total = data.totalPages -1

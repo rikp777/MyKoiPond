@@ -19,7 +19,8 @@ import java.util.Set;
 @Table(name="parasites")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

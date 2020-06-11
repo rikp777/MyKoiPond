@@ -60,7 +60,7 @@
                 <template v-slot:first>
                     <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
                 </template>
-                <b-form-select-option-group v-for="(breed, index) in breeds" :label="breed.name">
+                <b-form-select-option-group v-for="(breed, index) in breeds" :label="breed.name" :key="index">
                     <option
                         :class="subBreed.links.self.href == form.subBreed ? 'selected' : ''"
                         v-for="(subBreed, index) in breed.subBreeds"
@@ -86,6 +86,7 @@
                     :class="pond.links.self.href == form.pond ? 'selected' : ''"
                     v-for="(pond, index) in ponds"
                     :value="pond.links.self.href"
+                    :key="index"
                 >
                     <span v-if="pond.links.self.href == form.pond">(selected) -</span>
                     {{pond.name}}

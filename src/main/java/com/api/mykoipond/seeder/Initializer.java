@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Role;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.swing.plaf.synth.SynthTextAreaUI;
@@ -17,6 +20,8 @@ import java.util.*;
 
 @Component
 public class Initializer {
+    @Autowired
+    private PasswordEncoder bCryptPasswordEncoder;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -94,7 +99,7 @@ public class Initializer {
                         .firstName("Rik")
                         .lastName("Peeters")
                         .email("rik@test.nl")
-                        .password("password")
+                        .password(bCryptPasswordEncoder.encode("password"))
                         .username("Rik")
                         .roles(new HashSet<>(roleEntities))
                         .ponds(ponds)

@@ -3,12 +3,13 @@ import Vuex from 'vuex'
 
 import app from '../main'
 import menu from './modules/menu'
-import user from './modules/user'
 import breed from './modules/breed.module'
 import subBreed from './modules/subbreed.module'
 import koi from './modules/koi.module'
 import parasite from './modules/parasite.module'
 import pond from './modules/pond.module'
+import koiParasite from './modules/koiParasite.module'
+import auth from './modules/auth.module'
 
 Vue.use(Vuex)
 
@@ -27,11 +28,12 @@ export default new Vuex.Store({
     },
     modules: {
         menu,
-        user,
         breed,
         subBreed,
         koi,
         parasite,
-        pond
+        pond,
+        koiParasite,
+        auth
     }
 })

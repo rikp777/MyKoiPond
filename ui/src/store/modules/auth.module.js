@@ -43,7 +43,7 @@ const actions = {
     return new Promise(resolve => {
       context.commit(FETCH_START);
       ApiService
-        .post("login", credentials)
+        .post("auth/login", credentials)
         .then((response) => {
           context.commit(SET_AUTH_USER, response.data);
           context.commit(FETCH_END);

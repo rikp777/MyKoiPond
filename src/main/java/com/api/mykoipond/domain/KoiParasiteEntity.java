@@ -18,7 +18,8 @@ import java.sql.Timestamp;
 @Table(name="KoiParasites")
 
 //LOMBOK
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

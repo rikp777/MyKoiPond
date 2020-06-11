@@ -2,7 +2,12 @@
     <div>
         <h1>Koi Dashboard</h1>
         <b-row>
-            <b-colxx xl="4" lg="12" class="mb-4">
+            <b-colxx xl="7" lg="12" class="mb-4">
+                <b-card :title="'parasite Overview - ' + item.name" v-if="parasiteItem">
+                    <overview-parasite
+                        :item="item"
+                    ></overview-parasite>
+                </b-card>
                 <b-card title="delete" v-if="deleteItem">
                     <del
                         :item="item"
@@ -11,14 +16,14 @@
                     ></del>
                 </b-card>
 
-                <b-card title="create" v-if="!updateItem && !deleteItem">
+                <b-card title="create" v-if="createItem && !deleteItem">
                     <create
                         :ponds="ponds"
                         :breeds="breeds"
                         @reloadMode="reloadCompListener"
                     ></create>
                 </b-card>
-                <b-card title="update" v-else-if="!deleteItem">
+                <b-card title="update" v-else-if="updateItem && !deleteItem">
                     <update
                         :ponds="ponds"
                         :breeds="breeds"
@@ -34,13 +39,14 @@
                 </b-card>
 
             </b-colxx>
-            <b-colxx xl="8" lg="12" class="mb-4">
+            <b-colxx xl="5" lg="12" class="mb-4">
                 <b-card title="overview" >
                     <overview
                         :key="reloadComp"
                         @updateMode="updateItemListener"
                         @deleteMode="deleteItemListener"
                         @reloadMode="reloadCompListener"
+                        @parasiteMode="parasiteItemListener"
                     ></overview>
                 </b-card>
             </b-colxx>
@@ -51,10 +57,13 @@
 
 <script>
     import overview from "../../crudl/koi/OverviewKoi";
-    import  create from "../../crudl/koi/CreateKoi";
-    import  update from "../../crudl/koi/UpdateKoi";
-    import del from "../../crudl/parasite/DeleteParasite";
-    import detail from "../../crudl/parasite/DetailParasite";
+    import create from "../../crudl/koi/CreateKoi";
+    import update from "../../crudl/koi/UpdateKoi";
+    import del from "../../crudl/koi/DeleteKoi";
+    import detail from "../../crudl/koi/DetailKoi";
+
+    import overviewParasite from "../../crudl/koiParasite/OverviewKoiParasite";
+
     import {mapGetters} from "vuex";
 
     export default {
@@ -64,12 +73,15 @@
             del,
             update,
             create,
-            overview
+            overview,
+            overviewParasite
         },
         data() {
             return {
+                parasiteItem: false,
                 deleteItem: false,
                 updateItem: false,
+                createItem: true,
                 item: Object,
                 reloadComp: 0,
             }
@@ -80,6 +92,8 @@
                 this.item = item
                 this.deleteItem = false
                 this.updateItem = true
+                this.createItem = false
+                this.parasiteItem = false
             },
             reloadCompListener() {
                 this.reloadComp += 1
@@ -88,11 +102,21 @@
                 this.addNotification('success filled', `Create Mode`, '')
                 this.deleteItem = false
                 this.updateItem = false
+                this.createItem = true
+                this.parasiteItem = false
             },
             deleteItemListener(item){
                 this.addNotification('error filled', `Delete Mode`, '')
                 this.item = item
                 this.deleteItem = true
+            },
+            parasiteItemListener(item){
+                this.addNotification('warning filled', `Parasite Mode`, '')
+                this.item = item
+                this.deleteItem = false
+                this.updateItem = false
+                this.createItem = false
+                this.parasiteItem = true
             },
             addNotification(type, title, message){
                 this.$notify(type, title, message, { duration: 3000, permanent: false })

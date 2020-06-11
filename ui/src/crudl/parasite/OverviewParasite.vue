@@ -75,10 +75,10 @@
         },
         computed: {
             ...mapGetters({
-                items: 'Parasites',
-                page: 'ParasitePage',
-                isLoading: 'ParasiteIsLoading',
-                error: 'ParasiteError'
+                items: 'parasites',
+                page: 'parasitePage',
+                isLoading: 'parasiteIsLoading',
+                error: 'parasiteError'
             })
         },
         methods: {
