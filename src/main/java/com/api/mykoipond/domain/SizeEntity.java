@@ -18,7 +18,8 @@ import java.sql.Timestamp;
 @Table(name="sizes")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

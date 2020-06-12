@@ -1,6 +1,6 @@
 <template>
     <div class="h-100">
-        <div id="app-container" :class="getMenuType" v-if="isAuthenticated">
+        <div id="app-container" :class="getMenuType" >
             <top-nav/>
             <sidebar/>
             <main>
@@ -10,9 +10,9 @@
             </main>
             <footer-component/>
         </div>
-        <div v-else>
-            <router-view/>
-        </div>
+<!--        <div v-else>-->
+<!--            <router-view/>-->
+<!--        </div>-->
     </div>
 </template>
 

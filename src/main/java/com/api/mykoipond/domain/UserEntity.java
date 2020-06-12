@@ -73,6 +73,14 @@ public class UserEntity extends BaseEntity{
         )
         private Set<RoleEntity> roles = new HashSet<>();
 
-        @ManyToMany()
+
+        @ManyToMany(
+                fetch = FetchType.LAZY
+        )
+        @JoinTable(
+                name = "user_permission",
+                joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "permission_id", referencedColumnName = "id")
+        )
         private Set<PermissionEntity> permissions = new HashSet<>();
 }

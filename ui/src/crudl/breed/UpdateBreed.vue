@@ -9,7 +9,7 @@
             label="Name"
             label-for="name">
             <b-form-input
-                id="name"
+                id="name-input"
                 v-model="form.name"
                 type="text"
                 required

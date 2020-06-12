@@ -3,6 +3,7 @@ package com.api.mykoipond.seeder;
 
 import com.api.mykoipond.dao.*;
 import com.api.mykoipond.domain.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Bean;
@@ -19,9 +20,10 @@ import java.sql.Date;
 import java.util.*;
 
 @Component
+@Slf4j
 public class Initializer {
     @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+    private PasswordEncoder passwordEncoder;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -64,6 +66,7 @@ public class Initializer {
     }
 
     public void pondTableSeeder() {
+        log.debug("initializing pond data...");
         pondEntities = Arrays.asList(
                 PondEntity.builder()
                         .name("Pond Garden")
@@ -79,6 +82,7 @@ public class Initializer {
         }
     }
     public void roleTableSeeder(){
+        log.debug("initializing role data...");
         roleEntities = Arrays.asList(
                 RoleEntity.builder()
                         .name("Admin")
@@ -92,6 +96,7 @@ public class Initializer {
         }
     }
     public void userTableSeeder() {
+        log.debug("initializing user data...");
         HashSet<PondEntity> ponds = new HashSet<>(pondEntities);
         System.out.println(ponds.toString());
         userEntities = Arrays.asList(
@@ -99,8 +104,8 @@ public class Initializer {
                         .firstName("Rik")
                         .lastName("Peeters")
                         .email("rik@test.nl")
-                        .password(bCryptPasswordEncoder.encode("password"))
-                        .username("Rik")
+                        .password(this.passwordEncoder.encode("password"))
+                        .username("user")
                         .roles(new HashSet<>(roleEntities))
                         .ponds(ponds)
                         .build()
@@ -112,6 +117,7 @@ public class Initializer {
 
 
     public void breedTableSeeder() {
+        log.debug("initializing breed data...");
         breedEntities = Arrays.asList(
                 //region
                 //1
@@ -779,6 +785,7 @@ public class Initializer {
     }
 
     public void koiTableSeeder() {
+        log.debug("initializing koi data...");
         koiEntities = Arrays.asList(
                 KoiEntity.builder()
                         .name("Jantje")
@@ -819,6 +826,7 @@ public class Initializer {
     }
 
     public void parasiteTableSeeder() {
+        log.debug("initializing parasite data...");
         parasiteEntities = Arrays.asList(
                 //region
                 ParasiteEntity.builder()
@@ -893,6 +901,7 @@ public class Initializer {
     }
 
     public void sizeTableSeeder() {
+        log.debug("initializing size data...");
         sizeEntities = Arrays.asList(
                 SizeEntity.builder()
                         .comment("Best wel lang goede vordering")

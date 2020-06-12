@@ -9,12 +9,14 @@
                             <p class="list-item-heading mb-0">{{item.name}}</p>
                             <p class="mb-0 text-muted text-small w-50">{{item.description}}</p>
                             <b-button
+                                :id="'update-'+item.name"
                                 class="btn-sm"
                                 variant="primary"
                                 @click="updateMode(item)">
                                 Update
                             </b-button>
                             <b-button
+                                :id="'delete-'+item.name"
                                 class="btn-sm"
                                 variant="danger"
                                 @click="deleteMode(item)">

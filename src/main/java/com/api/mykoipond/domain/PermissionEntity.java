@@ -1,14 +1,8 @@
 package com.api.mykoipond.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.HashSet;
 import java.util.List;
@@ -18,7 +12,8 @@ import java.util.Set;
 @Table(name="permissions")
 
 //LOMBOK
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -28,7 +23,14 @@ public class PermissionEntity extends BaseEntity{
     @NotEmpty
     private String name;
 
-    @ManyToMany(mappedBy="permissions")
+    @ManyToMany(
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            },
+            fetch = FetchType.LAZY,
+            mappedBy = "permissions"
+    )
     private Set<UserEntity> users = new HashSet<>();
 }
 
