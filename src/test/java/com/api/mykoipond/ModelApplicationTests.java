@@ -15,7 +15,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
-@TestPropertySource(locations = "classpath:application-test.properties")
+@TestPropertySource(locations = "classpath:application-test.yml")
 @SpringBootTest
 public class ModelApplicationTests {
     private List<UserEntity> userEntities = Arrays.asList(
