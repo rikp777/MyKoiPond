@@ -3,6 +3,7 @@
         <h5 class="card-title">Sure you want to delete {{item.name}}</h5>
         <p>{{item.description}}</p>
         <b-button
+            id="delete"
             class="btn-sm col-2"
             variant="danger"
             @click="deleteItem">
@@ -14,6 +15,7 @@
             @click="cancel">
             Cancel
         </b-button>
+        <div id="error" v-if="error">{{error}}</div>
     </div>
 </template>
 
@@ -21,6 +23,11 @@
     export default {
         name: "DeleteBreed",
         props: ['item'],
+        data() {
+            return {
+                error: '',
+            }
+        },
         methods: {
             deleteItem(){
                 let self = this.item.links.self.href
@@ -28,10 +35,16 @@
                 console.log(payload)
                 this.$store.dispatch('deleteBreed', payload)
                     .then(() => {
+                        this.error = "success"
                         this.$notify('success filled', `Successfully deleted ${this.item.name}`, '', { duration: 3000, permanent: false })
+                            setTimeout(function () {
                         this.$emit('createMode')
                         this.$emit('reloadMode')
+                            }, 2000);
                     })
+                .catch(() => {
+                    this.error = "error"
+                })
             },
             cancel(){
                 this.$emit('createMode')

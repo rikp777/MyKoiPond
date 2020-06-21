@@ -29,7 +29,7 @@
                 placeholder="Enter description"
             ></b-form-textarea>
         </b-form-group>
-
+        <div id="error" v-if="error">{{error}}</div>
 
         <b-button type="submit" variant="primary" id="create">Submit</b-button>
         <b-button type="reset" variant="danger" id="reset">Reset</b-button>
@@ -41,6 +41,7 @@
         name: "CreateBreed",
         data() {
             return {
+                error: '',
                 show: true,
                 form: {
                     name: '',
@@ -55,9 +56,14 @@
                 console.log("Breed Module - updating data", payload)
                 this.$store.dispatch("createBreed", payload)
                     .then(() => {
+                        this.error = 'success'
                         this.addNotification('success filled', `${this.form.name} successfully created`, 'notification')
                         this.onReset()
                         this.$emit('reloadMode')
+                    })
+                    .catch(() => {
+                        this.error = 'error'
+                        this.addNotification('danger filled', `${this.form.name} failed to created`, 'notification')
                     })
             },
             onReset(evt) {

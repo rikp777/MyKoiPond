@@ -62,7 +62,8 @@ const ApiService = {
         console.log(`[MyKoiPond] post ${resource} with params ${JSON.stringify(params)}`)
 
         const request = Vue.axios
-            .post(`${resource}`, params, {headers: {'content-type': 'application/json'}})
+            // .post(`${resource}`, params, {headers: {'content-type': 'application/json'}})
+            .post(`${resource}`, params[0])
             .catch((error) => {
                 throw `[MyKoiPond] ApiService ${resource} \n ${error}`;
             });

@@ -5,11 +5,10 @@
 
 
         <b-form-group
-            id="name"
             label="Name"
             label-for="name">
             <b-form-input
-                id="name-input"
+                id="name"
                 v-model="form.name"
                 type="text"
                 required
@@ -18,7 +17,6 @@
         </b-form-group>
 
         <b-form-group
-            id="description"
             label="Description"
             label-for="description">
             <b-form-textarea
@@ -30,8 +28,9 @@
             ></b-form-textarea>
         </b-form-group>
 
+        <div id="error" v-if="error">{{error}}</div>
 
-        <b-button type="submit" variant="primary">Submit</b-button>
+        <b-button id="update" type="submit" variant="primary">Submit</b-button>
         <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
 </template>
@@ -42,6 +41,7 @@
         props: ['item'],
         data() {
             return {
+                error: '',
                 form: {
                     name: '',
                     description: ''
@@ -56,9 +56,15 @@
                 console.log("Breed Module - updating data", payload)
                 this.$store.dispatch("updateBreed", payload)
                     .then(() => {
+                        this.error = 'success'
                         this.addNotification('success filled', `${this.form.name} successfully updated`, 'notification')
-                        this.onReset()
-                        this.$emit('reloadMode')
+                        setTimeout(function () {
+                            this.onReset()
+                            this.$emit('reloadMode')
+                        }, 2000);
+                    })
+                    .catch(() => {
+                        this.error = 'error'
                     })
             },
             onReset(evt) {

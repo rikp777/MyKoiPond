@@ -48,7 +48,7 @@ const actions = {
             })
     },
     createBreed(context, payload) {
-        // alert(JSON.stringify(payload))
+        console.log(payload)
         return apiService.post(apiUrl, payload)
             .then(({data}) => {
                 context.commit("setBreed", data)

@@ -1,14 +1,15 @@
 <template>
     <div>
-        <h1>Breed Dashboard</h1>
+        <h1>Breed Dashboard {{deleteItem}}</h1>
         <b-row>
             <b-colxx xl="6" lg="12" class="mb-4">
+
                 <b-card title="delete" v-if="deleteItem">
-                    <del
+                    <deletee
                         :item="item"
                         @createMode="createItemListener"
                         @reloadMode="reloadCompListener"
-                    ></del>
+                    ></deletee>
                 </b-card>
 
                 <b-card title="create" v-if="!updateItem && !deleteItem">
@@ -49,14 +50,14 @@
     import overview from "../../crudl/breed/OverviewBreed";
     import  create from "../../crudl/breed/CreateBreed";
     import  update from "../../crudl/breed/UpdateBreed";
-    import del from "../../crudl/breed/DeleteBreed";
+    import deletee from "../../crudl/breed/DeleteBreed";
     import detail from "../../crudl/breed/DetailBreed";
 
     export default {
         name: "DashboardBreed",
         components: {
             detail,
-            del,
+            deletee,
             update,
             create,
             overview

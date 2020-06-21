@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @TestPropertySource(locations = "classpath:application-test.yml")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
-public class BreedTests {
+public class ComplexQuery {
 
     @Autowired
     private BreedRepository breedRepository;
