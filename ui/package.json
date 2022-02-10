@@ -64,7 +64,7 @@
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^5.1.1",
     "cypress": "^4.8.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "vue-loader": "^15.8.3",
     "vue-template-compiler": "^2.6.11",
